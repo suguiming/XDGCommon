@@ -3,7 +3,9 @@
     "references": [
         "TDSGlobal"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Android","iOS","Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -199,12 +199,12 @@ namespace TDSGlobal
                 {
                     return;
                 }
-                if(wrapper.products!=null)
+                if(wrapper.error!=null)
                 {
-                    callback(wrapper.products);
+                    errorCallback(wrapper.error);
                     return;
                 }
-                errorCallback(wrapper.error);
+                callback(wrapper.products);
             });
         }
 
@@ -337,12 +337,12 @@ namespace TDSGlobal
             {
                 return;
             }
-            if(infoWrapper.orderInfo != null)
+            if(infoWrapper.error != null)
             {
-                callback(infoWrapper.orderInfo);
+                errorCallback(infoWrapper.error);
                 return;
             }
-            errorCallback(infoWrapper.error);
+            callback(infoWrapper.orderInfo);
         }
 
     }
