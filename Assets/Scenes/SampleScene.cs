@@ -256,7 +256,7 @@ public class SampleScene : MonoBehaviour, TDSGlobal.TDSGlobalShareCallback
 
         if (GUI.Button(new Rect(550, 370, 200, 60), "获取地区", myButtonStyle))
         {
-            TDSCommon.TDSCommon.GetInstance().GetRegionCode((isMainLand) =>
+            TDSCommon.TDSCommon.GetRegionCode((isMainLand) =>
             {
                 Debug.Log("是否是国内:" + isMainLand);
                 this.logText = "是否是国内:" + isMainLand;
