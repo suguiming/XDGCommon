@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TDSGlobal;
 
 public class SampleScene : MonoBehaviour, TDSGlobal.TDSGlobalShareCallback
 {
