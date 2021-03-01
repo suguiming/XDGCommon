@@ -1,10 +1,13 @@
 {
     "name": "Scene",
     "references": [
-        "TDSGlobal"
+        "TDSGlobal",
+        "TDSCommon"
     ],
     "includePlatforms": [
-        "Android","iOS","Editor"
+        "Android",
+        "Editor",
+        "iOS"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -4,7 +4,16 @@
       "version": "file:../TDSGlobal",
       "depth": 0,
       "source": "local",
-      "dependencies": {}
+      "dependencies": {
+        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.1-alpha-rnd"
+      }
+    },
+    "com.tds.sdk": {
+      "version": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.1-alpha-rnd",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0ea771307670a71424a0577022bebdbc79ec6280"
     },
     "com.unity.collab-proxy": {
       "version": "1.3.9",
