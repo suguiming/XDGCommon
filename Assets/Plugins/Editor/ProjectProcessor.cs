@@ -44,13 +44,19 @@ using UnityEngine;
                 }
 
                 // Swift编译选项
-                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY", "iPhone Developer: GU YUNZE (QNV4UFK7C2)");
-                proj.SetBuildProperty(target, "PROVISIONING_PROFILE_SPECIFIER", "XDSDKDemo_Dev");
-                proj.SetBuildProperty(target, "PROVISIONING_PROFILE", "e3b9cdf8-b425-4c00-aa8c-ba4d7982e662");
-                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer: GU YUNZE (QNV4UFK7C2)");
+                // proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY", "iPhone Developer: GU YUNZE (QNV4UFK7C2)");
+                // proj.SetBuildProperty(target, "PROVISIONING_PROFILE_SPECIFIER", "XDSDKDemo_Dev");
+                // proj.SetBuildProperty(target, "PROVISIONING_PROFILE", "e3b9cdf8-b425-4c00-aa8c-ba4d7982e662");
+                // proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer: GU YUNZE (QNV4UFK7C2)");
+
+                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY", "iPhone Distribution: Shanghai Xindong Enterprise Development Co., Ltd.");
+                proj.SetBuildProperty(target, "PROVISIONING_PROFILE_SPECIFIER", "Everything 2020");
+                proj.SetBuildProperty(target, "PROVISIONING_PROFILE", "6a542e15-b177-4e10-a884-31e7c51c4857");
+                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution: Shanghai Xindong Enterprise Development Co., Ltd.");
 
                 proj.SetBuildProperty(unityFrameworkTarget, "CODE_SIGN_STYLE", "Manual");
-                proj.SetBuildProperty(target, "DEVELOPMENT_TEAM", "NTC4BJ542G");
+                proj.SetBuildProperty(target, "CODE_SIGN_STYLE", "Manual");
+                // proj.SetBuildProperty(target, "DEVELOPMENT_TEAM", "NTC4BJ542G");
 
                 proj.SetBuildProperty(target, "PRODUCT_BUNDLE_IDENTIFIER", "com.xd.sdkdemo1");
 
