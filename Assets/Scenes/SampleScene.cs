@@ -200,10 +200,10 @@ public class SampleScene : MonoBehaviour, TDSGlobal.TDSGlobalShareCallback
 
         if (GUI.Button(new Rect(300, 610, 200, 60), "添加用户状态", myButtonStyle))
         {
-            TDSGlobal.TDSGlobalSDK.AddUserStatusChangeCallback((code) =>
+            TDSGlobal.TDSGlobalSDK.AddUserStatusChangeCallback((code,message) =>
             {
                 Debug.Log("code:" + code);
-                this.logText = "用户状态回调" + code;
+                this.logText = "用户状态回调 code:" + code + "\n" + "message:" + message;
             });
         }
 
