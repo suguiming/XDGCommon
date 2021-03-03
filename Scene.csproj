@@ -584,6 +584,9 @@
     <Reference Include="TDSGlobal">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSGlobal.dll</HintPath>
     </Reference>
+    <Reference Include="TDSCommon">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSCommon.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>

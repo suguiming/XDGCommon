@@ -4,6 +4,27 @@
       "version": "file:../TDSGlobal",
       "depth": 0,
       "source": "local",
+      "dependencies": {
+        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.3-alpha-rnd"
+      }
+    },
+    "com.tds.sdk": {
+      "version": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.3-alpha-rnd",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3be3703ca0e2415dfa5e56429e69b2010865cff7"
+    },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.2d.tilemap": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
       "dependencies": {}
     },
     "com.unity.collab-proxy": {
@@ -78,6 +99,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.xr.legacyinputhelpers": {
+      "version": "2.1.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.cn"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

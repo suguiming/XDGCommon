@@ -6,14 +6,31 @@
     <string>hn5RcJei2JxCYlS0</string>
     <key>game_name</key>
     <string>TDSGlobalDemo</string>
+    <key>game_version</key>
+    <string>1.0.4</string>
     <key>domain</key>
-    <string>https://tds-dev.xindong.com/</string>
+    <string>https://tds-xdg-hk.taptap-api.com</string>
     <key>channel</key>
     <string>App Store</string>
+    <key>game_logos</key>
+    <array>
+        <string>https://res.xdcdn.net/TDS/Global/res/xd_logo.png</string>
+        <string>https://res.xdcdn.net/TDS/Global/res/xd_logo.png</string>
+        <string>https://res.xdcdn.net/TDS/Global/res/xd_logo.png</string>
+    </array>
+    <key>tapsdk</key>
+    <dict>
+        <key>client_id</key>
+        <string>uNS7fT9rTgG010leoG</string>
+        <key>tapdb_enabled</key>
+        <true></true>
+        <key>moment_enabled</key>
+        <true></true>
+    </dict>
     <key>line</key>
     <dict>
         <key>channel_id</key>
-        <string>337997064271037</string>
+        <string>1655275943</string>
     </dict>
     <key>facebook</key>
     <dict>
@@ -77,16 +94,6 @@
             <key>First Purchase User</key>
             <string>x0sykq</string>
         </dict>
-    </dict>
-    <key>tapdb</key>
-    <dict>
-        <key>app_id</key>
-        <string></string>
-    </dict>
-    <key>taptap</key>
-    <dict>
-        <key>client_id</key>
-        <string>uNS7fT9rTgG010leoG</string>
     </dict>
 </dict>
 </plist>
