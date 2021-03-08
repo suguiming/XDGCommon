@@ -58,7 +58,7 @@ ios_compile_sh=$project_dir/ios_compile.sh
 
 android_compile_sh=$project_dir/android_compile.sh
 
-unity_version=2020.1.5f1c1
+unity_version=2020.1.17f1c1
 
 isRND=false
 
