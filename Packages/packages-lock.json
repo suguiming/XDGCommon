@@ -5,15 +5,15 @@
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.3-alpha-rnd"
+        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.4.3-alpha-rnd"
       }
     },
     "com.tds.sdk": {
-      "version": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.3-alpha-rnd",
+      "version": "https://github.com/xindong/TAPSDK_UPM.git#1.0.4.3-alpha-rnd",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "3be3703ca0e2415dfa5e56429e69b2010865cff7"
+      "hash": "f8041697d891fec8af24bc04a99b89f19230680d"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
