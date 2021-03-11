@@ -102,7 +102,7 @@ cd $PRODUCT_DIR
 mkdir -p $RELEASE_DIR
 
 doBuild $RELEASE_DIR "Release" "Android"
-# doBuild $RELEASE_DIR "Release" "IOS"
+doBuild $RELEASE_DIR "Release" "IOS"
 
 cd ..
 ls -l $PRODUCT_DIR
