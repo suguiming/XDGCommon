@@ -26,7 +26,7 @@ namespace TDSGlobal
             TDSGlobalImpl.GetInstance().UserCenter();
         }
 
-        public static void AddUserStatusChangeCallback(Action<int> callback)
+        public static void AddUserStatusChangeCallback(Action<int,string> callback)
         {
             TDSGlobalImpl.GetInstance().AddUserStatusChangeCallback(callback);
         }
@@ -44,7 +44,6 @@ namespace TDSGlobal
         public static void Share(int shareFlavors, string imagePath, TDSGlobalShareCallback callback)
         {
             TDSGlobalImpl.GetInstance().Share(shareFlavors, imagePath, callback);
-
         }
 
         public static void SetLanguage(int languageType)
