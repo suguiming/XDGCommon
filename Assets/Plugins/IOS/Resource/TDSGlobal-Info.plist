@@ -9,7 +9,7 @@
     <key>game_version</key>
     <string>1.0.4</string>
     <key>domain</key>
-    <string>https://tds-xdg-hk.taptap-api.com</string>
+    <string>https://tds-dev.xindong.com</string>
     <key>channel</key>
     <string>App Store</string>
     <key>game_logos</key>
