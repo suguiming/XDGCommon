@@ -83,7 +83,7 @@ namespace TDSGlobal
             EngineBridge.GetInstance().CallHandler(command);
         }
 
-        public void AddUserStatusChangeCallback(Action<int> callback)
+        public void AddUserStatusChangeCallback(Action<int,string> callback)
         {
             Command command = new Command(TDSGlobalBridgeName.LOGIN_SERVICE_NAME, "addUserStatusChangeCallback", true,  null);
             EngineBridge.GetInstance().CallHandler(command, (result) =>
@@ -93,8 +93,7 @@ namespace TDSGlobal
                 }
                 
                 TDSGlobalUserStatusChangeWrapper statusChangeWrapper = new TDSGlobalUserStatusChangeWrapper(result.content);
-                callback(statusChangeWrapper.code);
-
+                callback(statusChangeWrapper.code,statusChangeWrapper.message);
             });
         }
 
@@ -247,6 +246,16 @@ namespace TDSGlobal
             dic.Add("roleId", roleId);
             dic.Add("roleName", roleName);
             Command command = new Command(TDSGlobalBridgeName.SERVICE_NAME, "report", false, dic);
+            EngineBridge.GetInstance().CallHandler(command);
+        }
+
+        public void TrackUser(string userId)
+        {
+            Command command = new Command.Builder()
+                        .Service(TDSGlobalBridgeName.SERVICE_NAME)
+                        .Method("trackUser")
+                        .Args("trackUser",userId)
+                        .CommandBuilder();
             EngineBridge.GetInstance().CallHandler(command);
         }
 

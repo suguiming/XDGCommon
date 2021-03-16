@@ -39,5 +39,7 @@
         "dev_key":"337997064271037",
         "app_id":"337997064271037"
     },
-    "web_pay_url":"http://tds-dev-webpay-sea.xindong.com"
+    "web_pay_url":"http://tds-dev-webpay-sea.xindong.com",
+    "base_url":"https://tds-dev.xindong.com/" 
 }
+
