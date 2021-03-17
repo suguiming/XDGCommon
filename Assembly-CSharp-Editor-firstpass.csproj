@@ -611,11 +611,26 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="TDSMoment">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSMoment.dll</HintPath>
+    </Reference>
+    <Reference Include="TDSLogin">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSLogin.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TDS.Editor">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/Unity.TDS.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="TDSGlobal">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSGlobal.dll</HintPath>
+    </Reference>
+    <Reference Include="TDSCommon">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TDSTapDB">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSTapDB.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -635,26 +650,11 @@
     <Reference Include="Unity.TextMeshPro">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="TDSMoment">
-        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSMoment.dll</HintPath>
-    </Reference>
-    <Reference Include="TDSLogin">
-        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSLogin.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TDS.Editor">
-        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/Unity.TDS.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="TDSCommon">
-        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="TDSTapDB">
-        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSTapDB.dll</HintPath>
-    </Reference>
     <Reference Include="TDSCore">
         <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/TDSCore.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+        <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

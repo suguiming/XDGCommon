@@ -15,6 +15,6 @@
     <key>NSMicrophoneUsageDescription</key>
     <string>App需要您的同意,才能访问麦克风</string>
     <key>NSUserTrackingUsageDescription</key>
-    <string>App需要追踪你的信息</string>
+    <string>请允许App获取并使用您的 IDFA ,来为您提供更好的服务</string>
 </dict>
 </plist>
