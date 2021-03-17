@@ -4,18 +4,19 @@
 
 * 安装Unity **2018.3**或更高版本
 
-* IOS **10**或更高版本
+* iOS **10**或更高版本
 
-* Android 目标为**API19**或更高版本
+* Android 目标为**API21**或更高版本
 
 ### 1.添加TDSGlobal Unity SDK
 
 * 使用Unity Package Manager 添加SDK到项目中。
 ```json
-//在Packages/manifest.json 中添加TDSGlobalUnity SDK
+//在Packages/manifest.json 中添加TDSGlobal和TapSDK
 {
     "dependencies":{
-        "com.tds.global":"https://github.com/xindong/TDS_GLOBAL_UPM.git#{verison}",
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.6",
+        "com.tds.global":"https://github.com/xindong/TDS_GLOBAL_UPM.git#1.0.0",
     }
 }
 ```
@@ -36,13 +37,15 @@
 
 ### 2.配置TDSGlobal Unity SDK
 
+* 配置TDSGlobal Unity SDK 首先需要配置 [TapSDK接入文档](https://developer.taptap.com/v2-doc/sdk/tap-unity)
+
 获取针对当前平台的TDSGlobal配置文件
-* IOS 将**TDSGlobal-Info.plist**配置文件复制到**Assets/Plugins/IOS**中
+* iOS 将**TDSGlobal-Info.plist**配置文件复制到**Assets/Plugins/iOS**中
 * Android 将**TDSGlobal_info.json**、**google-Service.json** 文件复制到**Assets/Plugins/Android/assets**中
 
 自动配置脚本参考 [注意事项](#tips)
 
-#### 2.1 [IOS](https://git.gametaptap.com/tds-public/tdsglobal/-/blob/master/doc/iOS/ios_doc.md)
+#### 2.1 [iOS](https://git.gametaptap.com/tds-public/tdsglobal/-/blob/master/doc/iOS/ios_doc.md)
 
 ##### 2.1.1 配置编译选项
 
@@ -52,12 +55,19 @@
 
 ##### 2.2.1 配置AndroidManifest.xml文件
 
-打开Project Settings/Player/Publishing Settings/Build/Custom Main Manifest 配置，编辑Manifest.xml文件
+需要打开Project Settings/Player/Publishing Settings/Build/Custom Main Manifest 配置，编辑Manifest.xml文件。
+如果需要Facebook相关功能，替换其中的 **facebook-clientId**、**facebook-scheme**等。
 
 ```xml
  <meta-data
 android:name="com.facebook.sdk.ApplicationId"
-android:value="{facebook-cliendId}" />
+android:value="{facebook-clientId}" />
+
+    <activity
+        android:name="com.taptap.sdk.TapTapActivity"
+        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        android:exported="false"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
      <activity
 android:name="com.facebook.FacebookActivity"
@@ -78,7 +88,7 @@ android:label="@string/app_name" />
     <!-- Facebook 分享图片使用 -->
     <provider
         android:name="com.facebook.FacebookContentProvider"
-        android:authorities="com.facebook.app.FacebookContentProvider{facebook-cliendId}"
+        android:authorities="com.facebook.app.FacebookContentProvider{facebook-clientId}"
         android:exported="true" />
 
     
@@ -148,7 +158,7 @@ TDSGlobal.TDSGlobalSDK.GetUser((tdsUser)=
 ```
 ##### 3.3.3 添加用户状态回调
 ```c#
-TDSGlobal.TDSGlobalSDK.AddUserStatusChangeCallback((code)=
+TDSGlobal.TDSGlobalSDK.AddUserStatusChangeCallback((code,message)=
 {
     if(code == TDSGlobalUserStatusCode.LOGOUT)
     {
@@ -181,6 +191,10 @@ public class TDSGlobalUser
         public string sub;
         // use Name
         public string name;
+        // 登陆类型
+        public int loginType;
+        // 绑定类型
+        public List<string> boundAccounts;
         // Token
         public TDSGlobalAccessToken token;
     
@@ -350,12 +364,34 @@ writerHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'
 
 ```
 
-#### 4.2 IOS
-确保TDSGlobal-Info.plist 拷贝到 Assets/Plugins/IOS目录中
+#### 4.2 iOS
+
+确保TDSGlobal-Info.plist 拷贝到 Assets/Plugins/iOS目录中，同时检查项目的Xcode工程中自否自动添加以下依赖:
+
+```
+AdSupport.framework
+LocalAuthentication.framework
+AuthenticationServices.framework
+SystemConfiguration.framework
+Accelerate.framework
+SafariServices.framework
+Webkit.framework
+CoreTelephony.framework
+Security.framework
+libc++.tdb
+AppTrackingTransparency.framework
+AdService.framework
+iAd.framework
+```
+
+TDSGlobal/Plugins/Editor/TDSIOSPostBuildProcessor.cs 会自动配置所需依赖。
 
 ```c#
+//自动添加需要依赖的framework
+proj.AddFrameworkToProject(unityFrameworkTarget, "AdServices.framework", true);
+proj.AddFrameworkToProject(unityFrameworkTarget, "iAd.framework", false);
 
-//脚本拷贝 TDSGlobal/Plugins/IOS/Resource 下的资源文件并且添加到framework的依赖中
+//脚本拷贝 TDSGlobal/Plugins/iOS/Resource 下的资源文件并且添加到framework的依赖中
 List<string> names = new List<string>();    
 names.Add("TDSGlobalSDKResources.bundle");
 names.Add("LineSDKResource.bundle");
@@ -422,5 +458,18 @@ UnityAppController.WriteBelow(@"[KeyboardDelegate Initialize];",@"[TDSGlobalSDK 
 UnityAppController.WriteBelow(@"AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);",@"[TDSGlobalSDK application:app openURL:url options:options];");
 UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",@"[TDSGlobalSDK application:application continueUserActivity:userActivity restorationHandler:restorationHandler];");
 UnityAppController.WriteBelow(@"handler(UIBackgroundFetchResultNoData);",@"[TDSGlobalSDK application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];");
-Debug.Log("修改代码成功");
 ```
+
+### 5.SDK权限使用声明
+
+#### 1.Android
+
+android.permission.WRITE_EXTERNAL_STORAG 允许应用读取外部储存，用于内嵌动态、TapDB
+android.permission.READ_EXTERNAL_STORAGE 允许应用写入外部储存，用于内嵌动态、TapDB
+
+#### 2.iOS
+
+NSUserTrackingUsageDescription iOS14以上获取IDFA需要配置改权限，用TapDB
+NSPhotoLibraryUsageDescription 相册权限，用于内嵌动态
+NSCameraUsageDescription 相机，用于内嵌动态
+NSMicrophoneUsageDescription 麦克风，用于内嵌动态
