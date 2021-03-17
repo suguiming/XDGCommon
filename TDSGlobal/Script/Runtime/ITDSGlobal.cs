@@ -12,7 +12,7 @@ namespace TDSGlobal
 
         void Logout();
 
-        void AddUserStatusChangeCallback(Action<int> callback);
+        void AddUserStatusChangeCallback(Action<int,string> callback);
 
         void GetUser(Action<TDSGlobalUser> callback, Action<TDSGlobalError> errorCallback);
 
@@ -35,6 +35,8 @@ namespace TDSGlobal
         void RestorePurchase(string tdsTransactionInfo, string orderId, string productId, string roleId, string serverId, string ext, Action<TDSGlobalOrderInfo> callback,Action<TDSGlobalError> errorCallback);
 
         void Report(string serverId, string roleId, string roleName);
+
+        void TrackUser(string serverId);
 
         void TrackUser(string serverId, string roleId, string roleName, int level);
 
