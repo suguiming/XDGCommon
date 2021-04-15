@@ -73,8 +73,8 @@
         "channel_id": "1655275943"
     },
     "tapsdk": {
-        "client_id": "kTY6aJC5g69EnziBYC",
-        "client_secret": "PNPYfT5ZKx9SfTvMTuKNFoglNqzA0ukibjqACZ7J",
+        "client_id": "jfqhF3x9mat70ez52i",
+        "client_secret": "C91pZh9OJNt7oDPx3lku4H01HelnYjSBS1jaZJed",
         "tapdb_enabled": true,
         "moment_enabled": true
     }

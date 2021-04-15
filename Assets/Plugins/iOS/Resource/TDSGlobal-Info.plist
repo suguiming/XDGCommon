@@ -4,8 +4,6 @@
 <dict>
     <key>client_id</key>
     <string>hn5RcJei2JxCYlS0</string>
-    <key>client_secret</key>
-    <string>hn5RcJei2JxCYlS0</string>
     <key>game_name</key>
     <string>TDSGlobalDemo</string>
     <key>game_version</key>
@@ -25,13 +23,13 @@
     <key>tapsdk</key>
     <dict>
         <key>client_id</key>
-        <string>kTY6aJC5g69EnziBYC</string>
+        <string>jfqhF3x9mat70ez52i</string>
         <key>tapdb_enabled</key>
         <true></true>
         <key>moment_enabled</key>
         <true></true>
         <key>client_secret</key>
-        <string>PNPYfT5ZKx9SfTvMTuKNFoglNqzA0ukibjqACZ7J</string>
+        <string>C91pZh9OJNt7oDPx3lku4H01HelnYjSBS1jaZJed</string>
     </dict>
     <key>twitter</key>
     <dict>
