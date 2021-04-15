@@ -6,10 +6,14 @@
     <string>com.xd.sdkdemo1</string>
     <key>client_id</key>
     <string>hn5RcJei2JxCYlS0</string>
+    <key>client_secret</key>
+    <string>hn5RcJei2JxCYlS0</string>
     <key>game_name</key>
     <string>TDSGlobalDemo</string>
     <key>game_version</key>
     <string>1.0.4</string>
+    <key>bundle_id</key>
+    <string>com.xd.sdkdemo1</string>
     <key>domain</key>
     <string>https://tds-dev.xindong.com</string>
     <key>channel</key>
@@ -28,6 +32,13 @@
         <true></true>
         <key>moment_enabled</key>
         <true></true>
+    </dict>
+    <key>twitter</key>
+    <dict>
+        <key>consumer_key</key>
+        <string>feOTAapnuXNFngQ2LktBnCpeF</string>
+        <key>consumer_secret</key>
+        <string>zqkP0Mn9pmxypZ9dwFVbCZbQsxVT9REHNWWtTPEp8zIgOsB84l</string>
     </dict>
     <key>line</key>
     <dict>
