@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>bundle_id</key>
-    <string>com.xd.sdkdemo1</string>
     <key>client_id</key>
     <string>hn5RcJei2JxCYlS0</string>
     <key>client_secret</key>
@@ -15,7 +13,7 @@
     <key>bundle_id</key>
     <string>com.xd.sdkdemo1</string>
     <key>domain</key>
-    <string>https://tds-dev.xindong.com</string>
+    <string>https://tds-xdg-hk.taptap-api.com</string>
     <key>channel</key>
     <string>App Store</string>
     <key>game_logos</key>

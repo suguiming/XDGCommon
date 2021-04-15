@@ -78,5 +78,5 @@
         "tapdb_enabled": true,
         "moment_enabled": true
     },
-    "base_url": "https://tds-dev.xindong.com/"
+    "base_url": "https://tds-xdg-hk.taptap-api.com"
 }
