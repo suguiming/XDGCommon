@@ -77,6 +77,5 @@
         "client_secret": "PNPYfT5ZKx9SfTvMTuKNFoglNqzA0ukibjqACZ7J",
         "tapdb_enabled": true,
         "moment_enabled": true
-    },
-    "base_url": "https://tds-xdg-hk.taptap-api.com"
+    }
 }

@@ -25,11 +25,13 @@
     <key>tapsdk</key>
     <dict>
         <key>client_id</key>
-        <string>uNS7fT9rTgG010leoG</string>
+        <string>kTY6aJC5g69EnziBYC</string>
         <key>tapdb_enabled</key>
         <true></true>
         <key>moment_enabled</key>
         <true></true>
+        <key>client_secret</key>
+        <string>PNPYfT5ZKx9SfTvMTuKNFoglNqzA0ukibjqACZ7J</string>
     </dict>
     <key>twitter</key>
     <dict>
