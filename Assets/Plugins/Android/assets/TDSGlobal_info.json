@@ -1,6 +1,5 @@
 {
     "client_id": "hn5RcJei2JxCYlS0",
-    "client_secret": "hn5RcJei2JxCYlS0",
     "game_name": "TDSGlobalDemo",
     "domian": "tdsglobal.com",
     "channel": "Google Play",
@@ -74,7 +73,8 @@
         "channel_id": "1655275943"
     },
     "tapsdk": {
-        "client_id": "uNS7fT9rTgG010leoG",
+        "client_id": "kTY6aJC5g69EnziBYC",
+        "client_secret": "PNPYfT5ZKx9SfTvMTuKNFoglNqzA0ukibjqACZ7J",
         "tapdb_enabled": true,
         "moment_enabled": true
     },
