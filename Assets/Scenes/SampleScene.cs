@@ -11,6 +11,8 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
 
     private string imagePath = "输入图片地址";
 
+    private string loginType = "0";
+
     private int shareFlavors = TDSGlobalShareFlavors.FACEBOOK;
 
     // Start is called before the first frame update
@@ -33,7 +35,7 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
     {
         ScreenCapture.CaptureScreenshot(path, 0);
     }
-    
+
 
     public void ShareSuccess()
     {
@@ -71,6 +73,8 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
         productIds = GUI.TextArea(new Rect(1050, 220, 200, 100), productIds, myButtonStyle);
 
         imagePath = GUI.TextArea(new Rect(1050, 380, 200, 100), imagePath, myButtonStyle);
+
+        loginType = GUI.TextArea(new Rect(1050, 540, 200, 100), loginType, myButtonStyle);
 
         GUI.Label(new Rect(850, 600, 500, 300), logText, myLabelStyle);
 
@@ -200,7 +204,7 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
 
         if (GUI.Button(new Rect(300, 610, 200, 60), "添加用户状态", myButtonStyle))
         {
-            TDSGlobalSDK.AddUserStatusChangeCallback((code,message) =>
+            TDSGlobalSDK.AddUserStatusChangeCallback((code, message) =>
             {
                 Debug.Log("code:" + code);
                 logText = "用户状态回调 code:" + code + "\n" + "message:" + message;
@@ -274,22 +278,35 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
             imagePath = Application.dataPath + "/ScreenShot/ScreenShot1.png";
             CapturePic(imagePath);
         }
-        
+
         if (GUI.Button(new Rect(800, 50, 200, 60), "FacebookShare", myButtonStyle))
         {
             shareFlavors = TDSGlobalShareFlavors.FACEBOOK;
         }
-        
+
         if (GUI.Button(new Rect(800, 130, 200, 60), "LineShare", myButtonStyle))
         {
             shareFlavors = TDSGlobalShareFlavors.LINE;
         }
-        
+
         if (GUI.Button(new Rect(800, 210, 200, 60), "TwitterShare", myButtonStyle))
         {
             shareFlavors = TDSGlobalShareFlavors.TWITTER;
         }
-        
+
+        if (GUI.Button(new Rect(800, 290, 200, 60), "Login ByType", myButtonStyle))
+        {
+            int loginByType = int.Parse(loginType);
+            TDSGlobal.TDSGlobalSDK.LoginByType((LoginType)loginByType, (tdsUser) =>
+             {
+                 Debug.Log("user:" + tdsUser.ToJSON());
+                 logText = "user:" + tdsUser.ToJSON();
+             }, (tdsError) =>
+             {
+                 logText = "error:" + tdsError.ToJSON();
+                 Debug.Log("error:" + tdsError.ToJSON());
+             });
+        }
 
     }
 
