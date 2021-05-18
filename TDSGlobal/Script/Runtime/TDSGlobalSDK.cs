@@ -16,6 +16,12 @@ namespace TDSGlobal
             TDSGlobalImpl.GetInstance().Login(callback, errorCallback);
         }
 
+        public static void LoginByType(LoginType loginType, Action<TDSGlobalUser> callback,
+            Action<TDSGlobalError> errorCallback)
+        {
+            TDSGlobalImpl.GetInstance().LoginByType(loginType, callback, errorCallback);
+        }
+
         public static void Logout()
         {
             TDSGlobalImpl.GetInstance().Logout();
@@ -26,7 +32,7 @@ namespace TDSGlobal
             TDSGlobalImpl.GetInstance().UserCenter();
         }
 
-        public static void AddUserStatusChangeCallback(Action<int,string> callback)
+        public static void AddUserStatusChangeCallback(Action<int, string> callback)
         {
             TDSGlobalImpl.GetInstance().AddUserStatusChangeCallback(callback);
         }
@@ -51,19 +57,22 @@ namespace TDSGlobal
             TDSGlobalImpl.GetInstance().SetLanguage(languageType);
         }
 
-        public static void PayWithProduct(string orderId, string productId, string roleId, string serverId, string ext, Action<TDSGlobalOrderInfo> callback,Action<TDSGlobalError> errorCallback)
+        public static void PayWithProduct(string orderId, string productId, string roleId, string serverId, string ext,
+            Action<TDSGlobalOrderInfo> callback, Action<TDSGlobalError> errorCallback)
         {
-            TDSGlobalImpl.GetInstance().PayWithProduct(orderId, productId, roleId, serverId, ext, callback,errorCallback);
+            TDSGlobalImpl.GetInstance()
+                .PayWithProduct(orderId, productId, roleId, serverId, ext, callback, errorCallback);
         }
 
-        public static void PayWithWeb(string serverId, string roleId,Action<TDSGlobalError> callback)
+        public static void PayWithWeb(string serverId, string roleId, Action<TDSGlobalError> callback)
         {
             TDSGlobalImpl.GetInstance().PayWithWeb(serverId, roleId, callback);
         }
 
-        public static void QueryWithProductIds(string[] productIds, Action<List<TDSGlobalSkuDetail>> callback,Action<TDSGlobalError> errorCallback)
+        public static void QueryWithProductIds(string[] productIds, Action<List<TDSGlobalSkuDetail>> callback,
+            Action<TDSGlobalError> errorCallback)
         {
-            TDSGlobalImpl.GetInstance().QueryWithProductIds(productIds, callback,errorCallback);
+            TDSGlobalImpl.GetInstance().QueryWithProductIds(productIds, callback, errorCallback);
         }
 
         public static void QueryRestoredPurchases(Action<List<TDSGlobalRestoredPurchases>> callback)
@@ -71,14 +80,21 @@ namespace TDSGlobal
             TDSGlobalImpl.GetInstance().QueryRestoredPurchases(callback);
         }
 
-        public static void RestorePurchase(string tdsTransactionInfo, string orderId, string productId, string roleId, string serverId, string ext, Action<TDSGlobalOrderInfo> callback,Action<TDSGlobalError> errorCallback)
+        public static void RestorePurchase(string tdsTransactionInfo, string orderId, string productId, string roleId,
+            string serverId, string ext, Action<TDSGlobalOrderInfo> callback, Action<TDSGlobalError> errorCallback)
         {
-            TDSGlobalImpl.GetInstance().RestorePurchase(tdsTransactionInfo, orderId, productId, roleId, serverId, ext, callback, errorCallback);
+            TDSGlobalImpl.GetInstance().RestorePurchase(tdsTransactionInfo, orderId, productId, roleId, serverId, ext,
+                callback, errorCallback);
         }
 
         public static void Report(string serverId, string roleId, string roleName)
         {
             TDSGlobalImpl.GetInstance().Report(serverId, roleId, roleName);
+        }
+
+        public static void AdvertiserIDCollectionEnable(bool enable)
+        {
+            TDSGlobalImpl.GetInstance().AdvertiserIDCollectionEnable(enable);
         }
 
         public static void TrackUser(string serverId, string roleId, string roleName, int level)
@@ -120,6 +136,5 @@ namespace TDSGlobal
         {
             TDSGlobalImpl.GetInstance().StoreReview();
         }
-
     }
 }

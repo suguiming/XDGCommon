@@ -14,38 +14,65 @@ public class TDSAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
 {
     public int callbackOrder
     {
-        get
+        get { return 999; }
+    }
+
+    public static void GenerateAndroidX(string path)
+    {
+        string gradlePropertiesFile = path + "/gradle.properties";
+
+        Debug.Log($"GradleProperties File:{gradlePropertiesFile}");
+
+        if (File.Exists(gradlePropertiesFile))
         {
-            return 999;
+            File.Delete(gradlePropertiesFile);
         }
+
+        StreamWriter writer = File.CreateText(gradlePropertiesFile);
+        writer.WriteLine("org.gradle.jvmargs=-Xmx4096M");
+        writer.WriteLine("android.useAndroidX=true");
+        writer.WriteLine("android.enableJetifier=true");
+        writer.Flush();
+        writer.Close();
     }
 
     public static bool GeneratedAndroidGradle(string projectPath)
     {
-        if(!Directory.Exists(projectPath + "/launcher"))
+        if (!Directory.Exists(projectPath + "/launcher"))
         {
+            Debug.Log($"TDSG can't find {projectPath}/launcher");
+
             string targetGradlePath = projectPath + "/build.gradle";
-            
+
             string googleServiceOriginPath = projectPath + "/src/main/assets/google-services.json";
 
             string targetServicePath = projectPath + "/google-services.json";
 
-            if(File.Exists(googleServiceOriginPath)){
+            if (File.Exists(googleServiceOriginPath))
+            {
                 //copy google-service.json 到目录下
                 Debug.Log($"Copy GoogleService.json to Android Project:{targetServicePath}");
-                File.Copy(googleServiceOriginPath,targetServicePath,true);
+                File.Copy(googleServiceOriginPath, targetServicePath, true);
             }
 
-            if(File.Exists(targetGradlePath))
+            if (File.Exists(targetGradlePath))
             {
-                TDSEditor.TDSScriptStreamWriterHelper writeHelper = new TDSEditor.TDSScriptStreamWriterHelper(targetGradlePath);
-                writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",@"apply plugin: 'com.google.gms.google-services'");
-                writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",@"buildscript {dependencies {classpath 'com.google.gms:google-services:4.0.2'}}");
+                TDSEditor.TDSScriptStreamWriterHelper writeHelper =
+                    new TDSEditor.TDSScriptStreamWriterHelper(targetGradlePath);
+                writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",
+                    @"apply plugin: 'com.google.gms.google-services'");
+                writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",
+                    @"apply plugin: 'com.google.firebase.crashlytics'");
+                writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",
+                    @"buildscript {dependencies {classpath 'com.google.gms:google-services:4.0.2'}}");
+                writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",
+                    @"buildscript {dependencies {classpath 'com.google.firebase:firebase-crashlytics-gradle:2.2.1'}}");
 
-                writeHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'])",@"
-                implementation 'com.google.firebase:firebase-core:16.0.1'
-                implementation 'com.google.firebase:firebase-analytics:15.0.1'
-                implementation 'com.google.firebase:firebase-messaging:17.3.4'
+                writeHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'])", @"
+
+                implementation 'com.google.firebase:firebase-core:17.2.2'
+                implementation 'com.google.firebase:firebase-messaging:21.1.0'
+
                 implementation 'com.google.code.gson:gson:2.8.6'
                 implementation 'com.google.android.gms:play-services-auth:16.0.1'
                 implementation 'com.facebook.android:facebook-login:5.15.3'
@@ -57,22 +84,42 @@ public class TDSAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
                 implementation 'com.android.support:support-annotations:28.0.0'
                 implementation 'com.android.support:appcompat-v7:28.0.0'
                 implementation 'com.android.support:recyclerview-v7:28.0.0'
-                implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'");
+                implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
+                implementation 'com.twitter.sdk.android:twitter:3.3.0'
+                implementation 'com.twitter.sdk.android:tweet-composer:3.3.0'
+                implementation 'com.linecorp:linesdk:5.0.1'
+                ");
                 return true;
-            }else
+            }
+            else
             {
                 Debug.LogError("TDSGlobal can't find Android Gradle File!");
                 return false;
             }
         }
+
         return false;
     }
 
     void IPostGenerateGradleAndroidProject.OnPostGenerateGradleAndroidProject(string path)
-    {   
-        string projectPath = path.Substring(0,path.Length - 12);
+    {
+        GenerateAndroidX(path);
 
-        if(GeneratedAndroidGradle(path))
+        string projectPath = path;
+
+        if (path.Contains("unityLibrary"))
+        {
+            projectPath = path.Substring(0, path.Length - 12);
+            GenerateAndroidX(projectPath);
+        }
+        else
+        {
+            GenerateAndroidX(path);
+        }
+
+        Debug.Log($"Project path:{path},substring path:{projectPath}");
+
+        if (GeneratedAndroidGradle(projectPath))
         {
             return;
         }
@@ -80,10 +127,11 @@ public class TDSAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
         string googleServiceOriginPath = projectPath + "/unityLibrary/src/main/assets/google-services.json";
 
         string targetServicePath = projectPath + "/launcher/google-services.json";
-    
-        if(File.Exists(googleServiceOriginPath)){
+
+        if (File.Exists(googleServiceOriginPath))
+        {
             //copy google-service.json 到目录下
-            File.Copy(googleServiceOriginPath,targetServicePath,true);
+            File.Copy(googleServiceOriginPath, targetServicePath, true);
         }
 
         string launcherGradle = projectPath + "/launcher/build.gradle";
@@ -92,37 +140,49 @@ public class TDSAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
 
         string unityLibraryGradle = projectPath + "/unityLibrary/build.gradle";
 
-        if(File.Exists(launcherGradle)){
+        if (File.Exists(launcherGradle))
+        {
             Debug.Log("write launch gradle");
-            TDSEditor.TDSScriptStreamWriterHelper writerHelper = new TDSEditor.TDSScriptStreamWriterHelper(launcherGradle);
+
+            TDSEditor.TDSScriptStreamWriterHelper writerHelper =
+                new TDSEditor.TDSScriptStreamWriterHelper(launcherGradle);
             writerHelper.WriteBelow(@"implementation project(':unityLibrary')", @"
-                implementation 'com.google.firebase:firebase-core:16.0.1'
-                implementation 'com.google.firebase:firebase-analytics:15.0.1'
-                implementation 'com.google.firebase:firebase-messaging:17.3.4'
+                
+                implementation 'com.google.firebase:firebase-core:17.2.2'
+                implementation 'com.google.firebase:firebase-messaging:21.1.0'
+
             ");
-            writerHelper.WriteBelow(@"apply plugin: 'com.android.application'",@"apply plugin: 'com.google.gms.google-services'");
+            writerHelper.WriteBelow(@"apply plugin: 'com.android.application'",
+                @"apply plugin: 'com.google.gms.google-services'");
+            writerHelper.WriteBelow(@"apply plugin: 'com.android.application'",
+                @"apply plugin: 'com.google.firebase.crashlytics'");
         }
 
-        if(File.Exists(baseProjectGradle)){
+        if (File.Exists(baseProjectGradle))
+        {
             Debug.Log("write project gradle");
-            TDSEditor.TDSScriptStreamWriterHelper writerHelper = new TDSEditor.TDSScriptStreamWriterHelper(baseProjectGradle);
+            TDSEditor.TDSScriptStreamWriterHelper writerHelper =
+                new TDSEditor.TDSScriptStreamWriterHelper(baseProjectGradle);
             writerHelper.WriteBelow(@"task clean(type: Delete) {
     delete rootProject.buildDir
-}",@"allprojects {
+}", @"allprojects {
     buildscript {
         dependencies {
             classpath 'com.google.gms:google-services:4.0.2'
+            classpath 'com.google.firebase:firebase-crashlytics-gradle:2.2.1'
         }
     }
 }");
         }
 
-        if(File.Exists(unityLibraryGradle)){
-            TDSEditor.TDSScriptStreamWriterHelper writerHelper = new TDSEditor.TDSScriptStreamWriterHelper(unityLibraryGradle);
-            writerHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'])",@"
-                implementation 'com.google.firebase:firebase-core:16.0.1'
-                implementation 'com.google.firebase:firebase-analytics:15.0.1'
-                implementation 'com.google.firebase:firebase-messaging:17.3.4'
+        if (File.Exists(unityLibraryGradle))
+        {
+            TDSEditor.TDSScriptStreamWriterHelper writerHelper =
+                new TDSEditor.TDSScriptStreamWriterHelper(unityLibraryGradle);
+            writerHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'])", @"
+
+                implementation 'com.google.firebase:firebase-core:17.2.2'
+                implementation 'com.google.firebase:firebase-messaging:21.1.0'
     
                 implementation 'com.google.code.gson:gson:2.8.6'
 
@@ -138,10 +198,12 @@ public class TDSAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
                 implementation 'com.android.support:appcompat-v7:28.0.0'
                 implementation 'com.android.support:recyclerview-v7:28.0.0'
                 implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
+                
+                implementation 'com.twitter.sdk.android:twitter:3.3.0'
+                implementation 'com.twitter.sdk.android:tweet-composer:3.3.0'
+                implementation 'com.linecorp:linesdk:5.0.1'
             ");
         }
-
     }
-
 }
 #endif

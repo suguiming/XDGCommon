@@ -1,5 +1,6 @@
 
 #import <Foundation/Foundation.h>
+#import <TDSGlobalSDKCoreKit/TDSGlobalLoginType.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -8,15 +9,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param userId 用户唯一ID，非角色ID
 + (void)trackUser:(NSString *)userId;
 
-/// 跟踪玩家
++ (void)trackUser:(NSString *)userId
+        loginType:(TDSGlobalSDKLoginType)loginType
+       properties:(NSDictionary *)properties;
+
+/// 跟踪角色
 /// @param roleId 角色ID
 /// @param roleName 角色名
 /// @param serverId 服务器ID
-/// @param level 玩家等级
-+ (void)trackUser:(NSString *)roleId
-         roleName:(NSString *)roleName
-         serverId:(NSString *)serverId
-            level:(NSInteger)level;
+/// @param level 角色等级
++ (void)trackRoleWithRoleId:(NSString *)roleId
+                   roleName:(NSString *)roleName
+                   serverId:(NSString *)serverId
+                      level:(NSInteger)level;
 
 /// 跟踪自定义事件
 /// @param eventName 事件名

@@ -2,16 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>bundle_id</key>
-    <string>com.xd.sdkdemo1</string>
     <key>client_id</key>
     <string>hn5RcJei2JxCYlS0</string>
     <key>game_name</key>
     <string>TDSGlobalDemo</string>
     <key>game_version</key>
     <string>1.0.4</string>
+    <key>bundle_id</key>
+    <string>com.xd.sdkdemo1</string>
     <key>domain</key>
-    <string>https://tds-dev.xindong.com</string>
+    <string>https://tds-xdg-hk.taptap-api.com</string>
     <key>channel</key>
     <string>App Store</string>
     <key>game_logos</key>
@@ -23,11 +23,20 @@
     <key>tapsdk</key>
     <dict>
         <key>client_id</key>
-        <string>uNS7fT9rTgG010leoG</string>
+        <string>jfqhF3x9mat70ez52i</string>
         <key>tapdb_enabled</key>
         <true></true>
         <key>moment_enabled</key>
         <true></true>
+        <key>client_secret</key>
+        <string>C91pZh9OJNt7oDPx3lku4H01HelnYjSBS1jaZJed</string>
+    </dict>
+    <key>twitter</key>
+    <dict>
+        <key>consumer_key</key>
+        <string>feOTAapnuXNFngQ2LktBnCpeF</string>
+        <key>consumer_secret</key>
+        <string>zqkP0Mn9pmxypZ9dwFVbCZbQsxVT9REHNWWtTPEp8zIgOsB84l</string>
     </dict>
     <key>line</key>
     <dict>

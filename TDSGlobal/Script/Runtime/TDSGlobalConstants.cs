@@ -12,11 +12,51 @@ namespace TDSGlobal
         public static int TH = 3;
 
         public static int ID = 4;
+        // 韩语
+        public static int KR = 5;
+        // 日语
+        public static int JP = 6;
+        // 德语
+        public static int DE = 7;
+        // 法语
+        public static int FR = 8;
+        // 葡萄牙语
+        public static int PT = 9;
+        // 西班牙语
+        public static int ES = 10;
+        // 土耳其语
+        public static int TR = 11;
+        // 俄罗斯语
+        public static int RU = 12;
+    }
+
+    public enum LoginType
+    {
+        DEFAULT = 0,
+
+        TAPTAP_SIGN_IN = 1,
+
+        APPLE_SIGN_IN = 2,
+
+        GOOGLE_SIGN_IN = 3,
+
+        FACEBOOK_SIGN_IN = 4,
+
+        LINE_SIGN_IN = 5,
+
+        TWITTER_SIGN_IN = 6,
+
+        GUEST_SIGN_IN = 7
     }
 
     public class TDSGlobalShareFlavors
     {
         public static int FACEBOOK = 0;
+
+        public static int LINE = 1;
+
+        public static int TWITTER = 2;
+
     }
 
     public class TDSGlobalPaymentResultCode

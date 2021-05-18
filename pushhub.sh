@@ -7,16 +7,14 @@ if [ ! $hasGit ]; then
   exit 1
 else
   # 获取当前分支
-  branch=$(git branch | grep "*")
+  currentBranch=$(git symbolic-ref --short -q HEAD)
   # 截取分支名
-  currBranch=branch
-
   git branch -D upm
 
   git config --local http.postBuffer 524288000  
 
   //强制切换到当前mr分支
-  git checkout $currBranch --force
+  git checkout $currentBranch --force
   
   # 删除gitlab的tag以及本地缓存的Tag
   git tag -d $(git tag)
@@ -34,6 +32,6 @@ else
 
   git push upm upm --tags --force
 
-  git checkout $currBranch --force
+  git checkout $currentBranch --force
 
 fi
