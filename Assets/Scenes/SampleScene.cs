@@ -28,7 +28,6 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void CapturePic(string path)
@@ -42,11 +41,13 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
         Debug.Log("分享成功");
         logText = "分享成功";
     }
+
     public void ShareCancel()
     {
         Debug.Log("分享取消");
         logText = "分享取消";
     }
+
     public void ShareError(string error)
     {
         Debug.Log("分享失败:" + error);
@@ -131,6 +132,7 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
             {
                 Debug.Log("user:" + tdsUser.ToJSON());
                 logText = "user:" + tdsUser.ToJSON();
+                TDSGlobalSDK.TrackUser(tdsUser.userId.ToString());
             }, (tdsError) =>
             {
                 logText = "error:" + tdsError.ToJSON();
@@ -173,11 +175,10 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
                     logText = logText + detail.ToJSON();
                 }
             }, (error) =>
-             {
-                 logText = "查询商品错误:" + error.ToJSON();
-                 Debug.Log("查询商品错误:" + error.ToJSON());
-             });
-
+            {
+                logText = "查询商品错误:" + error.ToJSON();
+                Debug.Log("查询商品错误:" + error.ToJSON());
+            });
         }
 
         if (GUI.Button(new Rect(300, 370, 200, 60), "未完成订单", myButtonStyle))
@@ -297,17 +298,16 @@ public class SampleScene : MonoBehaviour, TDSGlobalShareCallback
         if (GUI.Button(new Rect(800, 290, 200, 60), "Login ByType", myButtonStyle))
         {
             int loginByType = int.Parse(loginType);
-            TDSGlobal.TDSGlobalSDK.LoginByType((LoginType)loginByType, (tdsUser) =>
-             {
-                 Debug.Log("user:" + tdsUser.ToJSON());
-                 logText = "user:" + tdsUser.ToJSON();
-             }, (tdsError) =>
-             {
-                 logText = "error:" + tdsError.ToJSON();
-                 Debug.Log("error:" + tdsError.ToJSON());
-             });
+            TDSGlobalSDK.AdvertiserIDCollectionEnable(false);
+            TDSGlobal.TDSGlobalSDK.LoginByType((LoginType) loginByType, (tdsUser) =>
+            {
+                Debug.Log("user:" + tdsUser.ToJSON());
+                logText = "user:" + tdsUser.ToJSON();
+            }, (tdsError) =>
+            {
+                logText = "error:" + tdsError.ToJSON();
+                Debug.Log("error:" + tdsError.ToJSON());
+            });
         }
-
     }
-
 }
