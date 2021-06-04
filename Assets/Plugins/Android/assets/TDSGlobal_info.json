@@ -76,6 +76,7 @@
         "client_id": "jfqhF3x9mat70ez52i",
         "client_secret": "C91pZh9OJNt7oDPx3lku4H01HelnYjSBS1jaZJed",
         "tapdb_enabled": true,
-        "moment_enabled": true
+        "moment_enabled": true,
+        "tapdb_channel": "tapdb_channel1"
     }
 }

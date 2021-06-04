@@ -668,10 +668,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Scene.csproj">
-      <Project>{6067FFF2-64C5-082B-651F-07904815E676}</Project>
-      <Name>Scene</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.TDSGlobal.Editor.csproj">
       <Project>{32068024-6F44-FBC5-6FDC-FB3F3CA974CE}</Project>
       <Name>Unity.TDSGlobal.Editor</Name>
@@ -679,6 +675,10 @@
     <ProjectReference Include="TDSGlobal.csproj">
       <Project>{9E8227A5-0312-2661-875D-ED212C15D9EF}</Project>
       <Name>TDSGlobal</Name>
+    </ProjectReference>
+    <ProjectReference Include="Scene.csproj">
+      <Project>{6067FFF2-64C5-082B-651F-07904815E676}</Project>
+      <Name>Scene</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
