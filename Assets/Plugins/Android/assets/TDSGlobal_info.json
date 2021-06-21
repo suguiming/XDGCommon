@@ -25,6 +25,10 @@
             {
                 "event_name": "In App Purchase Revenue",
                 "token": "x0sykq"
+            },
+            {
+                "event_name": "TDSG_ADJ_REVENUE",
+                "token": "demotesttoken"
             }
         ]
     },
@@ -56,14 +60,14 @@
         "tapdb_domian": "https://e-sg.tapdb.net/"
     },
     "appsflyer": {
-        "dev_key": "337997064271037",
+        "dev_key": "FLZT4V2Z3tSqCPtHbRwXNo",
         "app_id": "337997064271037"
     },
-    "web_pay_url": "http://47.241.170.127",
+    "web_pay_url": "https://ro-pay-sea.xd.com",
     "game_logos": [
-        "https://img.icons8.com/ios/2x/link--v1.png",
-        "https://img.icons8.com/ios/2x/link--v1.png",
-        "https://img.icons8.com/ios/2x/link--v1.png"
+        "https://res.xdcdn.net/TDS/Global/res/xd_logo.png",
+        "https://res.xdcdn.net/TDS/Global/res/xd_logo.png",
+        "https://res.xdcdn.net/TDS/Global/res/xd_logo.png"
     ],
     "twitter": {
         "consumer_key": "feOTAapnuXNFngQ2LktBnCpeF",
@@ -77,6 +81,6 @@
         "client_secret": "C91pZh9OJNt7oDPx3lku4H01HelnYjSBS1jaZJed",
         "tapdb_enabled": true,
         "moment_enabled": true,
-        "tapdb_channel": "tapdb_channel1"
+        "tapdb_channel": "tapdb_channel_1"
     }
 }
