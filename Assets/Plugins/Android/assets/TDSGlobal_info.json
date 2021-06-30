@@ -82,5 +82,6 @@
         "tapdb_enabled": true,
         "moment_enabled": true,
         "tapdb_channel": "tapdb_channel_1"
-    }
+    },
+    "base_url": "https://tds-dev.xindong.com"
 }
