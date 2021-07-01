@@ -14,7 +14,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "bad929dd66801542ad5cb60f6150a8b8f87b18d4"
+      "hash": "05f3e9672c4cf113d3076d8bdbd5f1f69922d114"
     },
     "com.taptap.tds.login": {
       "version": "https://github.com/TapTap/TapLogin-Unity.git#2.1.4",
