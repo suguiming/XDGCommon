@@ -268,11 +268,11 @@
  <Reference Include="TapTap.Login">
  <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/PackageCache/com.taptap.tds.login@cff64178e5/Plugins/TapTap.Login.dll</HintPath>
  </Reference>
- <Reference Include="TapTap.TapDB">
- <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/PackageCache/com.taptap.tds.tapdb@eb3c8981f1/Plugins/TapTap.TapDB.dll</HintPath>
- </Reference>
  <Reference Include="TapTap.Moment">
  <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/PackageCache/com.taptap.tds.moment@7db16fb283/Plugins/TapTap.Moment.dll</HintPath>
+ </Reference>
+ <Reference Include="TapTap.TapDB">
+ <HintPath>/Users/xiaoyi/Documents/UnityProject/TDSGlobalUnity/Library/PackageCache/com.taptap.tds.tapdb@eb3c8981f1/Plugins/TapTap.TapDB.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
