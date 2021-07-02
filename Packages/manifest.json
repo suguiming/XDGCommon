@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "com.taptap.tds.bootstrap": "https://github.com/TapTap/TapBootstrap-Unity.git#2.1.4",
-    "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.4",
-    "com.taptap.tds.login": "https://github.com/TapTap/TapLogin-Unity.git#2.1.4",
+    "com.taptap.tds.bootstrap": "https://github.com/TapTap/TapBootstrap-Unity.git#2.1.6",
+    "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.6",
+    "com.taptap.tds.login": "https://github.com/TapTap/TapLogin-Unity.git#2.1.6",
     "com.tds.global": "file:../TDSGlobal",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.2.1",

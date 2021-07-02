@@ -1,38 +1,38 @@
 {
   "dependencies": {
     "com.taptap.tds.bootstrap": {
-      "version": "https://github.com/TapTap/TapBootstrap-Unity.git#2.1.4",
+      "version": "https://github.com/TapTap/TapBootstrap-Unity.git#2.1.6",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.4"
+        "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.6"
       },
-      "hash": "b52d767bb02fe9785c5e2ff8aaa1562e4a121dcb"
+      "hash": "4410b11530031e6949efef735d8ae35afa3c203d"
     },
     "com.taptap.tds.common": {
-      "version": "https://github.com/TapTap/TapCommon-Unity.git#2.1.4",
+      "version": "https://github.com/TapTap/TapCommon-Unity.git#2.1.6",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "05f3e9672c4cf113d3076d8bdbd5f1f69922d114"
+      "hash": "f1e5940dfdcfc2d7f981a7abbcaabb45641f768d"
     },
     "com.taptap.tds.login": {
-      "version": "https://github.com/TapTap/TapLogin-Unity.git#2.1.4",
+      "version": "https://github.com/TapTap/TapLogin-Unity.git#2.1.6",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.4"
+        "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.6"
       },
-      "hash": "11837bc987a6122c7846e8b6419b87d054fc0d0e"
+      "hash": "cff64178e5e7050c7596ebb4638ac6cea7dde2e6"
     },
     "com.tds.global": {
       "version": "file:../TDSGlobal",
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "com.taptap.tds.login": "https://github.com/TapTap/TapLogin-Unity.git#2.1.4",
-        "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.4",
-        "com.taptap.tds.bootstrap": "https://github.com/TapTap/TapBootstrap-Unity.git#2.1.4"
+        "com.taptap.tds.login": "https://github.com/TapTap/TapLogin-Unity.git#2.1.6",
+        "com.taptap.tds.common": "https://github.com/TapTap/TapCommon-Unity.git#2.1.6",
+        "com.taptap.tds.bootstrap": "https://github.com/TapTap/TapBootstrap-Unity.git#2.1.6"
       }
     },
     "com.unity.collab-proxy": {
