@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>XD.Intl.Common</RootNamespace>
+        <AssemblyName>XD.Intl.Common</AssemblyName>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+        <Platform>AnyCPU</Platform>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="UnityEngine">
+            <HintPath>..\..\UnityLibs\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="TapTap.Bootstrap">
+            <HintPath>../../Library/PackageCache/com.taptap.tds.bootstrap@3efc679efe/Plugins/TapTap.Bootstrap.dll</HintPath>
+        </Reference>
+        <Reference Include="TapTap.Common">
+            <HintPath>../../Library/PackageCache/com.taptap.tds.common@48db098686/Plugins/TapTap.Common.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

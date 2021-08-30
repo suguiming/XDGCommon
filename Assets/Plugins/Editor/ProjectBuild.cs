@@ -1,9 +1,9 @@
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using System.Collections.Generic;
-using System;
+using XD.Intl.Common;
 
 class ProjectBuild : Editor
 {
@@ -18,6 +18,7 @@ class ProjectBuild : Editor
             if (e.enabled)
                 names.Add(e.path);
         }
+
         return names.ToArray();
     }
 
@@ -26,7 +27,7 @@ class ProjectBuild : Editor
         string defaultPath = defaultMacOSPath;
         if (!string.IsNullOrEmpty(defaultPath) && Directory.Exists(defaultPath))
         {
-            Debug.Log("set:" + key + " path:" + defaultPath);
+            XDGTool.Log("set:" + key + " path:" + defaultPath);
             EditorPrefs.SetString(key, defaultPath);
             return;
         }
@@ -40,50 +41,56 @@ class ProjectBuild : Editor
         bool IsRND = false;
         string unityVersion = "";
         string upmVersion = "";
-        foreach (string arg in System.Environment.GetCommandLineArgs())
+        foreach (string arg in Environment.GetCommandLineArgs())
         {
-            Debug.Log("args:" + arg);
+            XDGTool.Log("args:" + arg);
             if (arg.StartsWith("-EXPORT_PATH"))
             {
                 ExportPath = arg.Split('=')[1].Trim('"');
-                Debug.Log("ExportPath:" + ExportPath);
+                XDGTool.Log("ExportPath:" + ExportPath);
             }
             else if (arg.StartsWith("-IS_RND"))
             {
                 IsRND = arg.Split('=')[1].Trim('"').Equals("true");
-                Debug.Log("isRND:" + IsRND);
-            }else if (arg.StartsWith("-UNITY_VERSION"))
+                XDGTool.Log("isRND:" + IsRND);
+            }
+            else if (arg.StartsWith("-UNITY_VERSION"))
             {
                 unityVersion = arg.Split('=')[1].Trim('"');
-            }else if(arg.StartsWith("-UPM_VERSION")){
+            }
+            else if (arg.StartsWith("-UPM_VERSION"))
+            {
                 upmVersion = arg.Split('=')[1].Trim('"');
             }
         }
+
         // 签名文件配置，若不配置，则使用Unity默认签名
         PlayerSettings.Android.keyaliasName = "wxlogin";
         PlayerSettings.Android.keyaliasPass = "111111";
-        PlayerSettings.Android.keystoreName = Application.dataPath.Replace("/Assets", "") + "/sign_password_111111.keystore";
+        PlayerSettings.Android.keystoreName =
+            Application.dataPath.Replace("/Assets", "") + "/sign_password_111111.keystore";
         PlayerSettings.Android.keystorePass = "111111";
 
-        UpdateSetting("AndroidSdkRoot", "ANDROID_SDK", "/Applications/Unity/Hub/Editor/" + unityVersion + "/PlaybackEngines/AndroidPlayer/SDK");
-        UpdateSetting("AndroidNdkRoot", "ANDROID_NDK", "/Applications/Unity/Hub/Editor/" + unityVersion + "/PlaybackEngines/AndroidPlayer/NDK");
-        
-        string path = (ExportPath + "/" + "TDSGlobalSDKUnityDemo_" + upmVersion + ".apk").Replace("//","/");
+        UpdateSetting("AndroidSdkRoot", "ANDROID_SDK",
+            "/Applications/Unity/Hub/Editor/" + unityVersion + "/PlaybackEngines/AndroidPlayer/SDK");
+        UpdateSetting("AndroidNdkRoot", "ANDROID_NDK",
+            "/Applications/Unity/Hub/Editor/" + unityVersion + "/PlaybackEngines/AndroidPlayer/NDK");
 
-        Debug.Log("path:" + path);
+        string path = (ExportPath + "/" + "TDSGlobalSDKUnityDemo_" + upmVersion + ".apk").Replace("//", "/");
+
+        XDGTool.Log("path:" + path);
         try
         {
             BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.None);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            Debug.LogError(e.Message);
+            XDGTool.LogError(e.Message);
         }
     }
 
     static void BuildForIOS()
     {
-
         string path = Application.dataPath.Replace("/Assets", "") + "/TDSGlobalSDKUnityDemo";
 
         AssetDatabase.Refresh();
@@ -91,10 +98,9 @@ class ProjectBuild : Editor
         {
             BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.iOS, BuildOptions.None);
         }
-        catch (System.Exception m)
+        catch (Exception m)
         {
-            Debug.LogError(m.Message);
+            XDGTool.LogError(m.Message);
         }
     }
-
 }

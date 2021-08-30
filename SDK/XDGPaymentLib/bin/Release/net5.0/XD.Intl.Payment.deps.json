@@ -1,0 +1,78 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "XD.Intl.Payment/1.0.0": {
+        "dependencies": {
+          "XD.Intl.Common": "1.0.0",
+          "TapTap.Bootstrap": "3.1.0.0",
+          "TapTap.Common": "3.1.0.0",
+          "UnityEngine": "0.0.0.0"
+        },
+        "runtime": {
+          "XD.Intl.Payment.dll": {}
+        }
+      },
+      "XD.Intl.Common/1.0.0": {
+        "runtime": {
+          "XD.Intl.Common.dll": {}
+        }
+      },
+      "TapTap.Bootstrap/3.1.0.0": {
+        "runtime": {
+          "TapTap.Bootstrap.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "TapTap.Common/3.1.0.0": {
+        "runtime": {
+          "TapTap.Common.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "UnityEngine/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "XD.Intl.Payment/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "XD.Intl.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TapTap.Bootstrap/3.1.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TapTap.Common/3.1.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

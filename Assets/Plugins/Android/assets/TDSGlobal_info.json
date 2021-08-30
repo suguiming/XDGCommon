@@ -1,4 +1,5 @@
 {
+    "app_id": "1111",
     "client_id": "hn5RcJei2JxCYlS0",
     "game_name": "TDSGlobalDemo",
     "domian": "tdsglobal.com",
@@ -81,6 +82,8 @@
         "client_secret": "C91pZh9OJNt7oDPx3lku4H01HelnYjSBS1jaZJed",
         "tapdb_enabled": true,
         "moment_enabled": true,
-        "tapdb_channel": "tapdb_channel_1"
-    }
+        "tapdb_channel": "tapdb_channel_1",
+        "server_url": "https://jfqhf3x9.cloud.tds1.tapapis.cn"
+    },
+    "base_url": "http://47.243.168.127"
 }

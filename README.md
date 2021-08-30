@@ -37,7 +37,7 @@
 ### 2.配置TDSGlobal Unity SDK
 
 获取针对当前平台的TDSGlobal配置文件
-* IOS 将**TDSGlobal-Info.plist**配置文件复制到**Assets/Plugins/IOS**中
+* IOS 将**XDG-Info.plist**配置文件复制到**Assets/Plugins/IOS**中
 * Android 将**TDSGlobal_info.json**、**google-Service.json** 文件复制到**Assets/Plugins/Android/assets**中
 
 自动配置脚本参考 [注意事项](#tips)
@@ -351,7 +351,7 @@ writerHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'
 ```
 
 #### 4.2 IOS
-确保TDSGlobal-Info.plist 拷贝到 Assets/Plugins/IOS目录中
+确保XDG-Info.plist 拷贝到 Assets/Plugins/IOS目录中
 
 ```c#
 
@@ -360,7 +360,7 @@ List<string> names = new List<string>();
 names.Add("TDSGlobalSDKResources.bundle");
 names.Add("LineSDKResource.bundle");
 names.Add("GoogleSignIn.bundle");
-names.Add("TDSGlobal-Info.plist");
+names.Add("XDG-Info.plist");
 foreach (var name in names)
 {
     proj.AddFileToBuild(target, proj.AddFile(Path.Combine(resourcePath,name), Path.Combine(resourcePath,name), PBXSourceTree.Source));
