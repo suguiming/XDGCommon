@@ -113,8 +113,6 @@ didFinishLaunchingWithOptions:(nullable NSDictionary<UIApplicationLaunchOptionsK
 
 + (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
-+ (void)applicationWillResignActive:(UIApplication *)application;
-
 + (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts API_AVAILABLE(ios(13.0));
 
 + (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity  API_AVAILABLE(ios(13.0));
