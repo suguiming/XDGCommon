@@ -14,10 +14,7 @@ The user's user ID.
 The user’s user ID in string.
 */
 @property (nonatomic,copy,readonly) NSString *sub;
-/**
-The user’s  tds ID
- */
-@property (nonatomic,copy,readonly,nullable) NSString *tdsId;
+
 /**
 The user's user name.
 */
@@ -46,7 +43,6 @@ The user's token.
 
 - (instancetype)initWithUserID:(NSInteger)userID
                            sub:(nullable NSString *)sub
-                         tdsID:(nullable NSString *)tdsID
                           name:(nullable NSString *)name
                      loginType:(LoginEntryType)loginType
                boundAccounts:(NSArray *)boundAccounts
@@ -54,7 +50,6 @@ The user's token.
 
 - (instancetype)initWithUserID:(NSInteger)userID
                            sub:(nullable NSString *)sub
-                         tdsID:(nullable NSString *)tdsID
                           name:(nullable NSString *)name
                      loginType:(LoginEntryType)loginType
                  boundAccounts:(NSArray *)boundAccounts
