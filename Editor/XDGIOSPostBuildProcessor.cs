@@ -62,7 +62,7 @@ namespace XDGEditor{
                 Directory.CreateDirectory(resourcePath);
 
                 //拷贝文件夹里的资源
-                string tdsResourcePath = parentFolder + "/Assets/Plugins/iOS/Resource";
+                string tdsResourcePath = parentFolder + "/Assets/XD-Intl/Common/Plugins/iOS/Resource";
                 if (Directory.Exists(tdsResourcePath)){
                     XDGFileHelper.CopyAndReplaceDirectory(tdsResourcePath, resourcePath);
                 }
