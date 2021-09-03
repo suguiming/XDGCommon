@@ -10,6 +10,7 @@ using XD.Intl.Common;
 
 namespace XDGEditor{
     public class TDSIOSPostBuildProcessor : MonoBehaviour{
+        [PostProcessBuild(104)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
             XDGTool.Log("开始配置Xcode信息");
             if (BuildTarget == BuildTarget.iOS){
