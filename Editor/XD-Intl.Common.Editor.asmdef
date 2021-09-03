@@ -1,5 +1,8 @@
 {
   "name": "XD_Intl_Common_Editor",
+  "references": [
+    "TapTap.Common.Editor"
+  ],
   "includePlatforms": [
     "Editor"
   ],
