@@ -9,10 +9,11 @@ using UnityEngine;
 using XD.Intl.Common;
 
 namespace XDGEditor{
-    public class TDSIOSPostBuildProcessor : MonoBehaviour{
+    public static class XDGIOSPostBuildProcessor{
+        // 添加标签，unity导出工程后自动执行该函数
         [PostProcessBuild(104)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
-            XDGTool.Log("开始配置Xcode信息");
+            XDGTool.Log("开始配置Xcode信息1");
             if (BuildTarget == BuildTarget.iOS){
                 // 获得工程路径
                 var projPath = TapCommonCompile.GetProjPath(path);
