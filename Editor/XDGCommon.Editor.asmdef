@@ -1,5 +1,5 @@
 {
-  "name": "XD_Intl_Common_Editor",
+  "name": "XDGCommon.Editor",
   "references": [
     "TapTap.Common.Editor"
   ],

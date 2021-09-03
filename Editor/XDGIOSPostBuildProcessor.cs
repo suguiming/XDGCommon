@@ -10,10 +10,9 @@ using XD.Intl.Common;
 
 namespace XDGEditor{
     public static class XDGIOSPostBuildProcessor{
-        // 添加标签，unity导出工程后自动执行该函数
         [PostProcessBuild(104)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
-            XDGTool.Log("开始配置Xcode信息1");
+            XDGTool.Log("开始执行  XDGIOSPostBuildProcessor");
             if (BuildTarget == BuildTarget.iOS){
                 // 获得工程路径
                 var projPath = TapCommonCompile.GetProjPath(path);
@@ -22,7 +21,7 @@ namespace XDGEditor{
                 var unityFrameworkTarget = TapCommonCompile.GetUnityFrameworkTarget(proj);
                 
                 if (target == null || unityFrameworkTarget == null){
-                    XDGTool.LogError("target是空");
+                    XDGTool.LogError("XDGIOSPostBuildProcessor target 是空");
                     return;
                 }
                 
@@ -33,12 +32,14 @@ namespace XDGEditor{
                     Directory.Delete(resourcePath, true);
                 }
                 Directory.CreateDirectory(resourcePath);
+                XDGTool.Log("创建文件夹: " + resourcePath);
 
                 //拷贝文件夹里的资源
-                string tdsResourcePath = parentFolder + "/XDGGlobal/Plugins/iOS/Resource";
+                string tdsResourcePath = parentFolder + "/Assets/XD-Intl/Common/Plugins/iOS/Resource";
                 if (Directory.Exists(tdsResourcePath)){
                     XDGFileHelper.CopyAndReplaceDirectory(tdsResourcePath, resourcePath);
                 }
+                XDGTool.Log("资源路径: " + tdsResourcePath);
                 
                 // 复制Assets的plist到工程目录
                 File.Copy(parentFolder + "/Assets/Plugins/iOS/XDG-Info.plist",resourcePath + "/XDG-Info.plist");
@@ -63,8 +64,7 @@ namespace XDGEditor{
                 SetPlist(path, resourcePath + "/XDG-Info.plist", bundleId);
                 //插入代码片段
                 SetScriptClass(path);
-
-                XDGTool.Log("Xcode信息配置成功");
+                XDGTool.Log("XDGIOSPostBuildProcessor Xcode信息配置成功");
             }
         }
 
@@ -101,12 +101,11 @@ namespace XDGEditor{
             }
 
             Dictionary<string, object> dic = (Dictionary<string, object>) Plist.readPlist(infoPlistPath);
-
             string facebookId = null;
             string taptapId = null;
             string googleId = null;
             string twitterId = null;
-
+            
             foreach (var item in dic){
                 if (item.Key.Equals("facebook")){
                     Dictionary<string, object> facebookDic = (Dictionary<string, object>) item.Value;
