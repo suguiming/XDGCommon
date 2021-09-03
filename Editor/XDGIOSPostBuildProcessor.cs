@@ -1,4 +1,3 @@
-#if UNITY_EDITOR && UNITY_IOS
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +10,8 @@ using XD.Intl.Common;
 
 namespace XDGEditor{
     public class TDSIOSPostBuildProcessor : MonoBehaviour{
-        [PostProcessBuildAttribute(999)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
-            XDGTool.Log("开始配置Xcode信息1");
+            XDGTool.Log("开始配置Xcode信息");
             if (BuildTarget == BuildTarget.iOS){
                 // 获得工程路径
                 var projPath = TapCommonCompile.GetProjPath(path);
@@ -234,4 +232,3 @@ namespace XDGEditor{
         }
     }
 }
-#endif
