@@ -13,8 +13,7 @@ namespace XDGEditor{
     public class TDSIOSPostBuildProcessor : MonoBehaviour{
         [PostProcessBuildAttribute(999)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
-            XDGTool.Log("开始配置Xcode信息");
-
+            XDGTool.Log("开始配置Xcode信息1");
             if (BuildTarget == BuildTarget.iOS){
                 // 获得工程路径
                 var projPath = TapCommonCompile.GetProjPath(path);
@@ -27,46 +26,22 @@ namespace XDGEditor{
                     return;
                 }
                 
-                proj.AddFrameworkToProject(unityFrameworkTarget, "Accelerate.framework", true);
-                proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC -lc++ -lstdc++ -lz -weak_framework Accelerate");
-                proj.AddBuildProperty(unityFrameworkTarget, "OTHER_LDFLAGS",
-                    "-ObjC -lc++ -lstdc++ -lz -weak_framework Accelerate");
-
-                // Swift编译选项
-                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY",
-                "iPhone Distribution: Shanghai Xiaoliu Technology Co., Ltd.");
-                proj.SetBuildProperty(target, "PROVISIONING_PROFILE_SPECIFIER", "Everything 2020");
-                proj.SetBuildProperty(target, "PROVISIONING_PROFILE", "6a542e15-b177-4e10-a884-31e7c51c4857");
-                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]",
-                "iPhone Distribution: Shanghai Xiaoliu Technology Co., Ltd.");
-                proj.SetBuildProperty(target, "CODE_SIGN_STYLE", "Manual");
-                proj.SetBuildProperty(target, "DEVELOPMENT_TEAM", "NTC4BJ542G");
-                proj.SetBuildProperty(target, "PRODUCT_BUNDLE_IDENTIFIER", "com.ios.dxyy");
-                proj.SetBuildProperty(target, "ENABLE_BITCODE", "NO");
-                proj.SetBuildProperty(target, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "YES");
-                proj.SetBuildProperty(target, "SWIFT_VERSION", "5.0");
-                proj.SetBuildProperty(target, "CLANG_ENABLE_MODULES", "YES");
-                
-                proj.SetBuildProperty(unityFrameworkTarget, "CODE_SIGN_STYLE", "Manual");
-                proj.SetBuildProperty(unityFrameworkTarget, "ENABLE_BITCODE", "NO");
-                proj.SetBuildProperty(unityFrameworkTarget, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
-                proj.SetBuildProperty(unityFrameworkTarget, "SWIFT_VERSION", "5.0");
-                proj.SetBuildProperty(unityFrameworkTarget, "CLANG_ENABLE_MODULES", "YES");
-
                 // 添加资源文件，注意文件路径
-                var resourcePath = Path.Combine(path, "TDSGlobalResource");
+                var resourcePath = Path.Combine(path, "XDGResource");
                 var parentFolder = Directory.GetParent(Application.dataPath)?.FullName;
                 if (Directory.Exists(resourcePath)){
                     Directory.Delete(resourcePath, true);
                 }
-
                 Directory.CreateDirectory(resourcePath);
 
                 //拷贝文件夹里的资源
-                string tdsResourcePath = parentFolder + "/Assets/XD-Intl/Common/Plugins/iOS/Resource";
+                string tdsResourcePath = parentFolder + "/XDGGlobal/Plugins/iOS/Resource";
                 if (Directory.Exists(tdsResourcePath)){
                     XDGFileHelper.CopyAndReplaceDirectory(tdsResourcePath, resourcePath);
                 }
+                
+                // 复制Assets的plist到工程目录
+                File.Copy(parentFolder + "/Assets/Plugins/iOS/XDG-Info.plist",resourcePath + "/XDG-Info.plist");
 
                 //获取bundleId
                 var bundleId = GetValueFromPlist(resourcePath + "/XDG-Info.plist", "bundle_id");
@@ -259,5 +234,4 @@ namespace XDGEditor{
         }
     }
 }
-
 #endif
