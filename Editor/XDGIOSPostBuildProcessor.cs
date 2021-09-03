@@ -27,6 +27,7 @@ namespace XDGEditor{
                     return;
                 }
                 
+                proj.AddFrameworkToProject(unityFrameworkTarget, "Accelerate.framework", true);
                 proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC -lc++ -lstdc++ -lz -weak_framework Accelerate");
                 proj.AddBuildProperty(unityFrameworkTarget, "OTHER_LDFLAGS",
                     "-ObjC -lc++ -lstdc++ -lz -weak_framework Accelerate");
