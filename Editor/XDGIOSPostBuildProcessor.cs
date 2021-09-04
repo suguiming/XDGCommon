@@ -58,10 +58,10 @@ namespace XDGEditor{
         private static void copyResource(string target, string projPath, PBXProject proj, string parentFolder,
             string npmModuleName, string localModuleName, string xcodeResourceFolder, string[] bundleNames){
             //拷贝文件夹里的资源
-            var tdsResourcePath =  parentFolder + "/Assets/XD-Intl/" + localModuleName + "/Plugins/iOS/Resource";
-            if (!Directory.Exists(tdsResourcePath)){ //本地路径存在就用本地的，否则用npm下载的
-                tdsResourcePath = TapFileHelper.FilterFile(parentFolder + "/Library/PackageCache/",
-                    $"{npmModuleName}@/Plugins/iOS/Resource");
+            var tdsResourcePath = TapFileHelper.FilterFile(parentFolder + "/Library/PackageCache/",
+                $"{npmModuleName}@/Plugins/iOS/Resource");  
+            if (string.IsNullOrEmpty(tdsResourcePath)){ //优先使用npm的，否则用本地的
+                tdsResourcePath = parentFolder + "/Assets/XD-Intl/" + localModuleName + "/Plugins/iOS/Resource";
             }
             XDGTool.Log("资源路径" + tdsResourcePath);
             
