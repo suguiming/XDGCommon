@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using TapTap.Common.Editor;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 using UnityEngine;
-using XD.Intl.Common;
 
 namespace XD.Intl.Common.Editor{
     public static class XDGIOSPostBuildProcessor{
@@ -18,10 +16,18 @@ namespace XD.Intl.Common.Editor{
 
             if (BuildTarget == BuildTarget.iOS){
                 // 获得工程路径
-                var projPath = TapCommonCompile.GetProjPath(path);
-                var proj = TapCommonCompile.ParseProjPath(projPath);
-                var target = TapCommonCompile.GetUnityTarget(proj);
-                var unityFrameworkTarget = TapCommonCompile.GetUnityFrameworkTarget(proj);
+                var projPath = PBXProject.GetPBXProjectPath(path);
+                var proj = new PBXProject();
+                proj.ReadFromString(File.ReadAllText(projPath));
+
+                // 2019.3以上有多个target
+#if UNITY_2019_3_OR_NEWER
+                string unityFrameworkTarget = proj.TargetGuidByName("UnityFramework");
+                string target = proj.GetUnityMainTargetGuid();
+#else
+                string unityFrameworkTarget = proj.TargetGuidByName("Unity-iPhone");
+                string target = proj.TargetGuidByName("Unity-iPhone");
+#endif
 
                 if (target == null || unityFrameworkTarget == null){
                     XDGTool.LogError("XDGIOSPostBuildProcessor target 是空");
@@ -59,7 +65,7 @@ namespace XD.Intl.Common.Editor{
             string npmModuleName, string localModuleName, string xcodeResourceFolder, string[] bundleNames){
            
             //拷贝文件夹里的资源
-            var tdsResourcePath = TapFileHelper.FilterFile(parentFolder + "/Library/PackageCache/", $"{npmModuleName}@");
+            var tdsResourcePath = XDGFileHelper.FilterFile(parentFolder + "/Library/PackageCache/", $"{npmModuleName}@");
             if (string.IsNullOrEmpty(tdsResourcePath)){ //优先使用npm的，否则用本地的
                 tdsResourcePath = parentFolder + "/Assets/XD-Intl/" + localModuleName;
             }
