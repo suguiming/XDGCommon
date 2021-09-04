@@ -8,7 +8,7 @@ using UnityEditor.Callbacks;
 using UnityEditor.Android;
 #endif
 using UnityEngine;
-using XDGEditor;
+using XD.Intl.Common.Editor;
 
 public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
 {
@@ -57,8 +57,8 @@ public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
 
             if (File.Exists(targetGradlePath))
             {
-                XDGEditor.XDGScriptStreamWriterHelper writeHelper =
-                    new XDGEditor.XDGScriptStreamWriterHelper(targetGradlePath);
+                XD.Intl.Common.Editor.XDGScriptHandlerProcessor writeHelper =
+                    new XD.Intl.Common.Editor.XDGScriptHandlerProcessor(targetGradlePath);
                 writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",
                     @"apply plugin: 'com.google.gms.google-services'");
                 writeHelper.WriteBelow(@"apply plugin: 'com.android.application'",
@@ -144,8 +144,8 @@ public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
         {
             Debug.Log("write launch gradle");
 
-            XDGEditor.XDGScriptStreamWriterHelper writerHelper =
-                new XDGEditor.XDGScriptStreamWriterHelper(launcherGradle);
+            XD.Intl.Common.Editor.XDGScriptHandlerProcessor writerHelper =
+                new XD.Intl.Common.Editor.XDGScriptHandlerProcessor(launcherGradle);
             writerHelper.WriteBelow(@"implementation project(':unityLibrary')", @"
                 
                 implementation 'com.google.firebase:firebase-core:17.2.2'
@@ -161,8 +161,8 @@ public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
         if (File.Exists(baseProjectGradle))
         {
             Debug.Log("write project gradle");
-            XDGEditor.XDGScriptStreamWriterHelper writerHelper =
-                new XDGEditor.XDGScriptStreamWriterHelper(baseProjectGradle);
+            XD.Intl.Common.Editor.XDGScriptHandlerProcessor writerHelper =
+                new XD.Intl.Common.Editor.XDGScriptHandlerProcessor(baseProjectGradle);
             writerHelper.WriteBelow(@"task clean(type: Delete) {
     delete rootProject.buildDir
 }", @"allprojects {
@@ -177,8 +177,8 @@ public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
 
         if (File.Exists(unityLibraryGradle))
         {
-            XDGEditor.XDGScriptStreamWriterHelper writerHelper =
-                new XDGEditor.XDGScriptStreamWriterHelper(unityLibraryGradle);
+            XD.Intl.Common.Editor.XDGScriptHandlerProcessor writerHelper =
+                new XD.Intl.Common.Editor.XDGScriptHandlerProcessor(unityLibraryGradle);
             writerHelper.WriteBelow(@"implementation fileTree(dir: 'libs', include: ['*.jar'])", @"
 
                 implementation 'com.google.firebase:firebase-core:17.2.2'

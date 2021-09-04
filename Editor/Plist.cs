@@ -7,7 +7,7 @@ using System.Text;
 using System.Xml;
 using UnityEngine;
 
-namespace XDGEditor
+namespace XD.Intl.Common.Editor
 {
     public static class Plist
     {

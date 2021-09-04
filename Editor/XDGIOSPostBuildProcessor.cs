@@ -8,7 +8,7 @@ using UnityEditor.iOS.Xcode;
 using UnityEngine;
 using XD.Intl.Common;
 
-namespace XDGEditor{
+namespace XD.Intl.Common.Editor{
     public static class XDGIOSPostBuildProcessor{
         public static string plistName = "/XDG-Info.plist";
 
@@ -39,8 +39,8 @@ namespace XDGEditor{
                 XDGTool.Log("创建文件夹: " + resourcePath);
 
                 //拷贝资源文件,可能拷贝多个模块，这里只有common有资源
-                copyResource(target, projPath, proj, parentFolder, "com.xd.intl.common@fce8a45c44", "Common", 
-                    resourcePath, new[]{"XDGResources.bundle", "LineSDKResource.bundle", "GoogleSignIn.bundle","XDG-Info.plist"});
+               copyResource(target, projPath, proj, parentFolder, "com.xd.intl.common", "Common", 
+                 resourcePath, new[]{"XDGResources.bundle", "LineSDKResource.bundle", "GoogleSignIn.bundle","XDG-Info.plist"});
 
                 // 复制Assets的plist到工程目录
                 File.Copy(parentFolder + "/Assets/Plugins/iOS" + plistName, resourcePath + plistName);
@@ -57,14 +57,16 @@ namespace XDGEditor{
 
         private static void copyResource(string target, string projPath, PBXProject proj, string parentFolder,
             string npmModuleName, string localModuleName, string xcodeResourceFolder, string[] bundleNames){
+           
             //拷贝文件夹里的资源
-            var tdsResourcePath = parentFolder + "/Library/PackageCache/"+npmModuleName+"/Plugins/iOS/Resource";   
+            var tdsResourcePath = TapFileHelper.FilterFile(parentFolder + "/Library/PackageCache/", $"{npmModuleName}@");
             if (string.IsNullOrEmpty(tdsResourcePath)){ //优先使用npm的，否则用本地的
-                tdsResourcePath = parentFolder + "/Assets/XD-Intl/" + localModuleName + "/Plugins/iOS/Resource";
+                tdsResourcePath = parentFolder + "/Assets/XD-Intl/" + localModuleName;
             }
-            XDGTool.Log("资源路径" + tdsResourcePath);
+            tdsResourcePath = tdsResourcePath + "/Plugins/iOS/Resource";
             
-            if (!Directory.Exists(tdsResourcePath) || tdsResourcePath == null || tdsResourcePath == ""){
+            XDGTool.Log("资源路径" + tdsResourcePath);
+            if (!Directory.Exists(tdsResourcePath) || tdsResourcePath == ""){
                 XDGTool.LogError("需要拷贝的资源路径不存在");
                 return;
             }
@@ -200,7 +202,7 @@ namespace XDGEditor{
         private static void SetScriptClass(string pathToBuildProject){
             //读取Xcode中 UnityAppController.mm文件
             string unityAppControllerPath = pathToBuildProject + "/Classes/UnityAppController.mm";
-            XDGScriptStreamWriterHelper UnityAppController = new XDGScriptStreamWriterHelper(unityAppControllerPath);
+            XDGScriptHandlerProcessor UnityAppController = new XDGScriptHandlerProcessor(unityAppControllerPath);
 
             //在指定代码后面增加一行代码
             UnityAppController.WriteBelow(@"#import <OpenGLES/ES2/glext.h>", @"#import <XDGCommonSDK/XDGCommonSDK.h>");

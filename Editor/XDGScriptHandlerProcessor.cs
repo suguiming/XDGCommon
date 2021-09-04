@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace XDGEditor
+namespace XD.Intl.Common.Editor
 {
-    public class XDGScriptStreamWriterHelper : System.IDisposable
+    public class XDGScriptHandlerProcessor : System.IDisposable
     {
         private string filePath;
 
-        public XDGScriptStreamWriterHelper(string fPath)
+        public XDGScriptHandlerProcessor(string fPath)
         {
             filePath = fPath;
             if (!System.IO.File.Exists(filePath))
