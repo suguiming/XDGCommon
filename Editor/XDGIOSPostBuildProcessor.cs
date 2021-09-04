@@ -10,67 +10,78 @@ using XD.Intl.Common;
 
 namespace XDGEditor{
     public static class XDGIOSPostBuildProcessor{
+        public static string plistName = "/XDG-Info.plist";
+
         [PostProcessBuild(104)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
             XDGTool.Log("开始执行  XDGIOSPostBuildProcessor");
+
             if (BuildTarget == BuildTarget.iOS){
                 // 获得工程路径
                 var projPath = TapCommonCompile.GetProjPath(path);
                 var proj = TapCommonCompile.ParseProjPath(projPath);
                 var target = TapCommonCompile.GetUnityTarget(proj);
                 var unityFrameworkTarget = TapCommonCompile.GetUnityFrameworkTarget(proj);
-                
+
                 if (target == null || unityFrameworkTarget == null){
                     XDGTool.LogError("XDGIOSPostBuildProcessor target 是空");
                     return;
                 }
-                
+
                 // 添加资源文件，注意文件路径
                 var resourcePath = Path.Combine(path, "XDGResource");
                 var parentFolder = Directory.GetParent(Application.dataPath)?.FullName;
                 if (Directory.Exists(resourcePath)){
                     Directory.Delete(resourcePath, true);
                 }
+
                 Directory.CreateDirectory(resourcePath);
                 XDGTool.Log("创建文件夹: " + resourcePath);
 
-                //拷贝文件夹里的资源
-                string tdsResourcePath = parentFolder + "/Assets/XD-Intl/Common/Plugins/iOS/Resource";
-                if (Directory.Exists(tdsResourcePath)){
-                    XDGFileHelper.CopyAndReplaceDirectory(tdsResourcePath, resourcePath);
-                }
-                XDGTool.Log("资源路径: " + tdsResourcePath);
-                
+                //拷贝资源文件,可能拷贝多个模块，这里只有common有资源
+                copyResource(target, projPath, proj, parentFolder, "com.xd.intl.common", "Common", 
+                    resourcePath, new[]{"XDGResources.bundle", "LineSDKResource.bundle", "GoogleSignIn.bundle","XDG-Info.plist"});
+
                 // 复制Assets的plist到工程目录
-                File.Copy(parentFolder + "/Assets/Plugins/iOS/XDG-Info.plist",resourcePath + "/XDG-Info.plist");
-
-                //获取bundleId
-                var bundleId = GetValueFromPlist(resourcePath + "/XDG-Info.plist", "bundle_id");
-                List<string> names = new List<string>();
-                names.Add("XDGResources.bundle");
-                names.Add("LineSDKResource.bundle");
-                names.Add("GoogleSignIn.bundle");
-                names.Add("XDG-Info.plist");
-
-                foreach (var name in names){
-                    proj.AddFileToBuild(target,
-                        proj.AddFile(Path.Combine(resourcePath, name), Path.Combine(resourcePath, name),
-                            PBXSourceTree.Source));
-                }
-
-                File.WriteAllText(projPath, proj.WriteToString()); //保存
+                File.Copy(parentFolder + "/Assets/Plugins/iOS" + plistName, resourcePath + plistName);
 
                 //修改plist
-                SetPlist(path, resourcePath + "/XDG-Info.plist", bundleId);
+                var bundleId = GetValueFromPlist(resourcePath + plistName, "bundle_id");
+                SetPlist(path, resourcePath + plistName, bundleId);
+
                 //插入代码片段
                 SetScriptClass(path);
                 XDGTool.Log("XDGIOSPostBuildProcessor Xcode信息配置成功");
             }
         }
 
+        private static void copyResource(string target, string projPath, PBXProject proj, string parentFolder,
+            string npmModuleName, string localModuleName, string xcodeResourceFolder, string[] bundleNames){
+            //拷贝文件夹里的资源
+            var tdsResourcePath =  parentFolder + "/Assets/XD-Intl/" + localModuleName + "/Plugins/iOS/Resource";
+            if (!Directory.Exists(tdsResourcePath)){ //本地路径存在就用本地的，否则用npm下载的
+                tdsResourcePath = TapFileHelper.FilterFile(parentFolder + "/Library/PackageCache/",
+                    $"{npmModuleName}@/Plugins/iOS/Resource");
+            }
+            XDGTool.Log("资源路径" + tdsResourcePath);
+            
+            if (!Directory.Exists(tdsResourcePath) || tdsResourcePath == null || tdsResourcePath == ""){
+                XDGTool.LogError("需要拷贝的资源路径不存在");
+                return;
+            }
+            
+            XDGFileHelper.CopyAndReplaceDirectory(tdsResourcePath, xcodeResourceFolder);
+            foreach (var name in bundleNames){
+                proj.AddFileToBuild(target,
+                    proj.AddFile(Path.Combine(xcodeResourceFolder, name), Path.Combine(xcodeResourceFolder, name),
+                        PBXSourceTree.Source));
+            }
+            File.WriteAllText(projPath, proj.WriteToString()); //保存
+        }
+
         private static void SetPlist(string pathToBuildProject, string infoPlistPath, string bundleId){
             //添加info
-            string _plistPath = pathToBuildProject + "/Info.plist";
+            string _plistPath = pathToBuildProject + "/Info.plist"; //Xcode工程的Info.plist
             PlistDocument _plist = new PlistDocument();
             _plist.ReadFromString(File.ReadAllText(_plistPath));
             PlistElementDict _rootDic = _plist.root;
@@ -105,7 +116,7 @@ namespace XDGEditor{
             string taptapId = null;
             string googleId = null;
             string twitterId = null;
-            
+
             foreach (var item in dic){
                 if (item.Key.Equals("facebook")){
                     Dictionary<string, object> facebookDic = (Dictionary<string, object>) item.Value;
@@ -201,7 +212,8 @@ namespace XDGEditor{
             if (CheckoutUniversalLinkHolder(unityAppControllerPath, @"NSURL* url = userActivity.webpageURL;")){
                 UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",
                     @"[XDGSDK application:application continueUserActivity:userActivity restorationHandler:restorationHandler];");
-            }else{
+            }
+            else{
                 UnityAppController.WriteBelow(@"- (void)preStartUnity               {}",
                     @"-(BOOL) application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{[XDGSDK application:application continueUserActivity:userActivity restorationHandler:restorationHandler];return YES;}");
             }
@@ -229,6 +241,7 @@ namespace XDGEditor{
                     return (string) item.Value;
                 }
             }
+
             return null;
         }
     }

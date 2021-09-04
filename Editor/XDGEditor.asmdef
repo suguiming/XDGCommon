@@ -1,5 +1,5 @@
 {
-  "name": "XDGCommon.Editor",
+  "name": "XDGEditor",
   "references": [
     "TapTap.Common.Editor"
   ],
