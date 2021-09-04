@@ -39,7 +39,7 @@ namespace XDGEditor{
                 XDGTool.Log("创建文件夹: " + resourcePath);
 
                 //拷贝资源文件,可能拷贝多个模块，这里只有common有资源
-                copyResource(target, projPath, proj, parentFolder, "com.xd.intl.common", "Common", 
+                copyResource(target, projPath, proj, parentFolder, "com.xd.intl.common@fce8a45c44", "Common", 
                     resourcePath, new[]{"XDGResources.bundle", "LineSDKResource.bundle", "GoogleSignIn.bundle","XDG-Info.plist"});
 
                 // 复制Assets的plist到工程目录
@@ -58,8 +58,7 @@ namespace XDGEditor{
         private static void copyResource(string target, string projPath, PBXProject proj, string parentFolder,
             string npmModuleName, string localModuleName, string xcodeResourceFolder, string[] bundleNames){
             //拷贝文件夹里的资源
-            var tdsResourcePath = TapFileHelper.FilterFile(parentFolder + "/Library/PackageCache/",
-                $"{npmModuleName}@/Plugins/iOS/Resource");  
+            var tdsResourcePath = parentFolder + "/Library/PackageCache/"+npmModuleName+"/Plugins/iOS/Resource";   
             if (string.IsNullOrEmpty(tdsResourcePath)){ //优先使用npm的，否则用本地的
                 tdsResourcePath = parentFolder + "/Assets/XD-Intl/" + localModuleName + "/Plugins/iOS/Resource";
             }
