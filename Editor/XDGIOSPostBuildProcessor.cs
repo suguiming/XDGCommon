@@ -12,9 +12,8 @@ namespace XD.Intl.Common.Editor{
 
         [PostProcessBuild(104)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
-            XDGTool.Log("开始执行  XDGIOSPostBuildProcessor");
-
             if (BuildTarget == BuildTarget.iOS){
+                XDGTool.Log("开始执行  XDGIOSPostBuildProcessor");
                 // 获得工程路径
                 var projPath = PBXProject.GetPBXProjectPath(path);
                 var proj = new PBXProject();
