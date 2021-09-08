@@ -88,6 +88,11 @@ public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
                 implementation 'com.twitter.sdk.android:twitter:3.3.0'
                 implementation 'com.twitter.sdk.android:tweet-composer:3.3.0'
                 implementation 'com.linecorp:linesdk:5.0.1'
+                
+                implementation 'com.taptap.android:skynet:1.0.16'
+                implementation 'com.taptap.android:reactor:0.0.8.5'
+
+                
                 ");
                 return true;
             }
@@ -202,6 +207,11 @@ public class XDGAndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
                 implementation 'com.twitter.sdk.android:twitter:3.3.0'
                 implementation 'com.twitter.sdk.android:tweet-composer:3.3.0'
                 implementation 'com.linecorp:linesdk:5.0.1'
+                
+                implementation 'com.taptap.android:skynet:1.0.16'
+                implementation 'com.taptap.android:reactor:0.0.8.5'
+
+                
             ");
         }
     }
