@@ -9,11 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 The user's user ID.
 */
-@property (nonatomic,assign,readonly) NSInteger userId;
-/**
-The user’s user ID in string.
-*/
-@property (nonatomic,copy,readonly) NSString *sub;
+@property (nonatomic,copy,readonly) NSString *userId;
 
 /**
 The user's user name.
@@ -41,15 +37,13 @@ The user's token.
 
 + (void)clearCurrentUser;
 
-- (instancetype)initWithUserID:(NSInteger)userID
-                           sub:(nullable NSString *)sub
+- (instancetype)initWithUserID:(NSString *)userID
                           name:(nullable NSString *)name
                      loginType:(LoginEntryType)loginType
                boundAccounts:(NSArray *)boundAccounts
                          token:(XDGAccessToken *)token;
 
-- (instancetype)initWithUserID:(NSInteger)userID
-                           sub:(nullable NSString *)sub
+- (instancetype)initWithUserID:(NSString *)userID
                           name:(nullable NSString *)name
                      loginType:(LoginEntryType)loginType
                  boundAccounts:(NSArray *)boundAccounts

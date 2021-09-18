@@ -13,11 +13,13 @@ typedef void(^XDGInitCallback)(BOOL success);
 
 @interface XDGSDK : NSObject
 /// 获取当前 SDK 版本
-+ (NSString *)getTDSGlobalSDKVersion;
++ (NSString *)getSDKVersionName;
 
 /// 初始化 SDK
 /// @param handler 初始化结果回调
 + (void)initSDK:(XDGInitCallback)handler;
+
+
 
 /// 当前登录用户，打开客服中心
 /// @param serverId 服务器 ID，可为空
