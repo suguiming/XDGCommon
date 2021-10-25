@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace XD.Intl.Common.Editor
@@ -23,6 +24,8 @@ namespace XD.Intl.Common.Editor
         {
             StreamReader streamReader = new StreamReader(filePath);
             string all = streamReader.ReadToEnd();
+            // 兼容不同 OS 的 Line Separators
+            below = Regex.Replace(below, "\r\n", "\n", RegexOptions.IgnoreCase);
             streamReader.Close();
             int beginIndex = all.IndexOf(below, StringComparison.Ordinal);
             if (beginIndex == -1)
