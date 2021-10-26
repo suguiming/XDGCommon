@@ -32,6 +32,10 @@ namespace XD.Intl.Common.Editor{
                     XDGTool.LogError("XDGIOSPostBuildProcessor target 是空");
                     return;
                 }
+                
+                proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC");
+                proj.AddBuildProperty(unityFrameworkTarget, "OTHER_LDFLAGS", "-ObjC ");
+                proj.AddFrameworkToProject(unityFrameworkTarget, "Accelerate.framework", false);
 
                 // 添加资源文件，注意文件路径
                 var resourcePath = Path.Combine(path, "XDGResource");
