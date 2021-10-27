@@ -4,6 +4,7 @@
 #import <XDGCommonSDK/XDGShare.h>
 #import <XDGCommonSDK/XDGTrackerManager.h>
 #import <XDGCommonSDK/XDGMessageManager.h>
+#import <XDGCommonSDK/XDGRegionInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -29,6 +30,9 @@ typedef void(^XDGInitCallback)(BOOL success);
 
 /// 调起或跳转商店评分
 + (void)storeReview;
+
+// 获取当前用户位置
++ (XDGRegionInfo *)getRegionInfo;
 
 
 #pragma mark -- share

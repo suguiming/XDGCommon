@@ -1,5 +1,6 @@
 
 #import <Foundation/Foundation.h>
+#import <XDGCommonSDK/XDGRegionInfo.h>
 
 @class TDSGlobalGame;
 
@@ -17,18 +18,21 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)tapServerUrl;
 + (NSDictionary *)configData;
 + (NSDictionary *)configTapDict;
++ (NSString *)clientID;
 
 
 + (void)setLanguageLocale:(NSInteger)locale;
 
-+ (void)getClientConfig:(void (^)(BOOL success))handler;
++ (void)getClientConfigFirstRequest:(BOOL)first  com:(void (^)(BOOL success))handler;
+
++ (XDGRegionInfo *)getRegionInfo;
 
 /// 是否已经初始化
 + (BOOL)isGameInited;
 /// 是否需要客服
 + (BOOL)needReportService;
 #pragma mark - configs
-+ (BOOL)isGameInKorea;
++ (BOOL)isGameInKoreaAndPushServiceEnable;
 + (BOOL)isGameInNA;
 
 + (BOOL)googleEnable;
