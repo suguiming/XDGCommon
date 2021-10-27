@@ -13,7 +13,7 @@ namespace XD.Intl.Common.Editor{
         [PostProcessBuild(104)]
         public static void OnPostprocessBuild(BuildTarget BuildTarget, string path){
             if (BuildTarget == BuildTarget.iOS){
-                XDGTool.Log("开始执行  XDGIOSPostBuildProcessor");
+                Debug.Log("开始执行  XDGIOSPostBuildProcessor");
                 // 获得工程路径
                 var projPath = PBXProject.GetPBXProjectPath(path);
                 var proj = new PBXProject();
@@ -29,7 +29,7 @@ namespace XD.Intl.Common.Editor{
 #endif
 
                 if (target == null || unityFrameworkTarget == null){
-                    XDGTool.LogError("XDGIOSPostBuildProcessor target 是空");
+                    Debug.LogError("XDGIOSPostBuildProcessor target 是空");
                     return;
                 }
                 
@@ -45,7 +45,7 @@ namespace XD.Intl.Common.Editor{
                 }
 
                 Directory.CreateDirectory(resourcePath);
-                XDGTool.Log("创建文件夹: " + resourcePath);
+                Debug.Log("创建文件夹: " + resourcePath);
 
                 //拷贝资源文件,可能拷贝多个模块，这里只有common有资源
                copyResource(target, projPath, proj, parentFolder, "com.xd.intl.common", "Common", 
@@ -60,7 +60,7 @@ namespace XD.Intl.Common.Editor{
 
                 //插入代码片段
                 SetScriptClass(path);
-                XDGTool.Log("XDGIOSPostBuildProcessor Xcode信息配置成功");
+                Debug.Log("XDGIOSPostBuildProcessor Xcode信息配置成功");
             }
         }
 
@@ -74,9 +74,9 @@ namespace XD.Intl.Common.Editor{
             }
             tdsResourcePath = tdsResourcePath + "/Plugins/iOS/Resource";
             
-            XDGTool.Log("资源路径" + tdsResourcePath);
+            Debug.Log("资源路径" + tdsResourcePath);
             if (!Directory.Exists(tdsResourcePath) || tdsResourcePath == ""){
-                XDGTool.LogError("需要拷贝的资源路径不存在");
+                Debug.LogError("需要拷贝的资源路径不存在");
                 return;
             }
             
